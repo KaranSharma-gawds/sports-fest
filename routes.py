@@ -1,7 +1,7 @@
 import os
 import datetime as datetime, time
 import config as config
-from flask import Blueprint, request, url_for, render_template, redirect #, flash
+from flask import Blueprint, request, url_for, render_template, redirect, send_file #, flash
 from models import NIT, Event, ActivityLog, User, Uploaded_File
 from connection import DatabaseHandler
 from flask_restful import reqparse
@@ -44,6 +44,7 @@ def addEvent():
         info = Event(event_name = request.data['event_name'], host = request.data['host'], username = username, start_date = startDate, end_date = endDate, start_time = startTime, end_time = endTime, place = request.data['place'], year = request.data['year'])
         session.add(info)
         session.commit()
+        eventId = info.event_id
         return [{'status':'successfully added event'},addActivityLog(user = username, activityType = 'added event', eventId = eventId, changeTime = addTime)]
     else:
         return {'status':'running'}
@@ -54,10 +55,12 @@ def allEvents():
     user_json_array = []
     for user in users:
         user_json = {
+            'event id':user.event_id,
             'event name':user.event_name,
             'start date':user.start_date,
             'end date':user.end_date,
             'host':user.host,
+            'username':user.username,
             'start time':str(user.start_time),
             'end time':str(user.end_time),
             'place':user.place,
@@ -66,15 +69,33 @@ def allEvents():
         user_json_array.append(user_json)
     return user_json_array, 200
 
-@sports.route('/add-user', methods = ['GET', 'POST'])
+@sports.route('/login', methods = ['GET','POST'])
+def login():
+    if request.method == 'POST':
+        username = request.data['username']
+        user = User.query.filter_by(username = username).first()
+        if not user:
+            return {'status':'invalid username'}
+        password = request.data['password']
+        if user.checkPassword(password = password):
+            return {'status':'valid'}
+        return {'status':'invalid password'}
+    return render_template('login.html')
+
+@sports.route('/signup', methods = ['GET', 'POST'])
 def addUser():
     if request.method == 'POST':
-        info = User(username = request.data['username'], college_id = request.data['college_id'])
+        username = request.data['username']
+        casea = User.query.filter_by(username = username).first()
+        if casea:
+            return {'status':False}
+        password = request.data['password']
+        info = User(username = username, college_id = request.data['college_id'], password = password)
         session.add(info)
         session.commit()
         return {'status':'successfully added user'}
     else:
-        return {'status':'running'}
+        return render_template('signup.html')
 
 @sports.route('/all-users', methods = ['GET'])
 def allUsers():
@@ -108,13 +129,13 @@ def uploadPhoto():
             uploadTime = datetime.datetime.now()
             # username = request.data['username']
             # info = Uploaded_File(upload_time = uploadTime, filename = photo.filename, username = username, event = request.data['event'])
-            info = Uploaded_File(upload_time = uploadTime, filename = photo.filename, username = 'naruto', event = 'chunin exams', )
+            info = Uploaded_File(upload_time = uploadTime, filename = photo.filename, username = 'naruto', event = '6', )
             session.add(info)
             photo.save(os.path.join(config.PHOTOS_UPLOAD_FOLDER, filename))
             session.commit()
             file = Uploaded_File.query.filter_by(upload_time = uploadTime).first()
             file_id = file.file_id
-            return [{'status':'uploaded photo'}, addActivityLog(changeTime = uploadTime, file = file_id, user = 'naruto', activityType = 'added photo')]
+            return [{'status':'uploaded photo'}, addActivityLog(changeTime = uploadTime, file = file_id, user = 'naruto', eventId = '6', activityType = 'added photo')]
     else:
         return render_template('upload-file.html', filetype = 'photo', url = '/upload-photo')
 
@@ -147,7 +168,7 @@ def uploadDocument():
 
 def addActivityLog(changeTime = None, user = None, activityType = None, file = None, eventId = None):
     if request.method == 'POST':
-        info = ActivityLog(change_time = changeTime, file_id = file, user = user, activity_type = activityType, event_id = eventId)
+        info = ActivityLog(change_time = changeTime, file_id = file, user = user, activity_type = activityType, event = eventId)
         session.add(info)
         session.commit()
         return {'status':'added activity log'}
@@ -159,6 +180,23 @@ def getActivityLogs():
     logs = ActivityLog.query.all()
     log_json_array = []
     for log in logs:
-        log_json = {log.user:log.activity_type, 'file_id':log.file, 'on':log.change_time}
+        log_json = {log.user:log.activity_type, 'file_id':log.file, 'on':log.change_time, 'event id':log.event}
         log_json_array.append(log_json)
     return log_json_array, 200
+
+@sports.route('/events-images', methods = ['GET'])
+def loadImages():
+    return render_template('images.html')
+
+@sports.route('/load-image/<event_id>', methods=['GET'])
+def getUrls(event_id):
+    exists = Uploaded_File.query.filter_by(event = event_id).all()
+    files = []
+    for file in exists:
+        if file.file_name.rsplit('.', 1)[1].lower() in config.ALLOWED_PHOTO_EXTENTIONS:
+            url = os.path.join(config.PHOTOS_UPLOAD_FOLDER, file.file_name)
+            files.append(url)
+    return {'files':files}
+    # if exists:
+    #     return send_file(config.HOST + '/' + config.PORT + '/' + config.PHOTOS_UPLOAD_FOLDER + '/' + file_name, attachment_filename = file_name)
+    # return {'status':'no such file exists'}

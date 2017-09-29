@@ -30,7 +30,7 @@ class Event(DeclarativeBase):
     __tablename__ = 'event'
     event_id = Column(Integer, primary_key=True, autoincrement=True)
     event_name = Column(String(200))
-    host = Column(String(200), ForeignKey('NIT.college_name'))
+    host = Column(String(200), ForeignKey('NIT.college_id'))
     start_date = Column(Date)
     end_date = Column(Date)
     start_time = Column(Time)
@@ -62,7 +62,7 @@ class User(DeclarativeBase):
         self.pwhash = generate_password_hash(password)
     def __repr__(self):
         return self.username
-    def checkPassword(password = None):
+    def checkPassword(self, password):
         return check_password_hash(self.pwhash, password)
 
 class Uploaded_File(DeclarativeBase):
