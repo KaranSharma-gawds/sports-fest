@@ -76,7 +76,7 @@ class Uploaded_File(DeclarativeBase):
         self.username = username
         self.upload_time = upload_time
         self.event = event
-        self.filename = filename
+        self.file_name = filename
     def __repr__(self):
         return self.photo_id
 

@@ -129,13 +129,13 @@ def uploadPhoto():
             uploadTime = datetime.datetime.now()
             # username = request.data['username']
             # info = Uploaded_File(upload_time = uploadTime, filename = photo.filename, username = username, event = request.data['event'])
-            info = Uploaded_File(upload_time = uploadTime, filename = photo.filename, username = 'naruto', event = '6', )
+            info = Uploaded_File(upload_time = uploadTime, filename = photo.filename, username = 'naruto', event = '7')
             session.add(info)
             photo.save(os.path.join(config.PHOTOS_UPLOAD_FOLDER, filename))
             session.commit()
             file = Uploaded_File.query.filter_by(upload_time = uploadTime).first()
             file_id = file.file_id
-            return [{'status':'uploaded photo'}, addActivityLog(changeTime = uploadTime, file = file_id, user = 'naruto', eventId = '6', activityType = 'added photo')]
+            return [{'status':'uploaded photo'}, addActivityLog(changeTime = uploadTime, file = file_id, user = 'naruto', eventId = '7', activityType = 'added photo')]
     else:
         return render_template('upload-file.html', filetype = 'photo', url = '/upload-photo')
 
@@ -156,13 +156,13 @@ def uploadDocument():
             uploadTime = datetime.datetime.now()
             # username = request.data['username']
             # info = Uploaded_File(upload_time = uploadTime, filename = doc.filename, username = username, event = request.data['event'])
-            info = Uploaded_File(upload_time = uploadTime, filename = doc.filename, username = 'naruto', event = 'chunin exams', )
+            info = Uploaded_File(upload_time = uploadTime, filename = doc.filename, username = 'naruto', event = '7')
             session.add(info)
             doc.save(os.path.join(config.DOCUMENTS_UPLOAD_FOLDER, filename))
             session.commit()
             file = Uploaded_File.query.filter_by(upload_time = uploadTime).first()
             file_id = file.file_id
-            return [{'status':'added document'},addActivityLog(changeTime = uploadTime, user = 'naruro', file = file_id, activityType = 'added document')]
+            return [{'status':'added document'},addActivityLog(changeTime = uploadTime, user = 'naruro', file = file_id, activityType = 'added document', eventId = '7')]
     else:
         return render_template('upload-file.html', filetype = 'doc', url = '/upload-document')
 
@@ -190,13 +190,17 @@ def loadImages():
 
 @sports.route('/load-image/<event_id>', methods=['GET'])
 def getUrls(event_id):
-    exists = Uploaded_File.query.filter_by(event = event_id).all()
-    files = []
-    for file in exists:
+    files = Uploaded_File.query.filter_by(event = event_id).all()
+    urls = []
+    for file in files:
         if file.file_name.rsplit('.', 1)[1].lower() in config.ALLOWED_PHOTO_EXTENTIONS:
             url = os.path.join(config.PHOTOS_UPLOAD_FOLDER, file.file_name)
-            files.append(url)
-    return {'files':files}
-    # if exists:
-    #     return send_file(config.HOST + '/' + config.PORT + '/' + config.PHOTOS_UPLOAD_FOLDER + '/' + file_name, attachment_filename = file_name)
-    # return {'status':'no such file exists'}
+            urls.append(url)
+    return {'urls':urls}
+
+@sports.route('/load-images/<image_id>', methods = ['GET'])
+def loadImage(image_id):
+    file = Uploaded_File.query.get(image_id);
+    if file:
+        return send_file(os.path.join(config.PHOTOS_UPLOAD_FOLDER, file.file_name), attachment_filename = file.file_name)
+    return {'status':'no such file exists'}
