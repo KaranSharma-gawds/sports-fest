@@ -4,7 +4,7 @@ from sqlalchemy import Integer, ForeignKey, String, TypeDecorator, Unicode, Enum
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.dialects.sqlite import BLOB
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from flask_login import UserMixin
 
 engine = create_engine(config.sqlite['CREATE_ENGINE_URL'], echo=True)
 DeclarativeBase = declarative_base(engine)
@@ -15,67 +15,114 @@ def  _fk_pragma_on_connect(dbapi_con, con_record):
 
 event.listen(engine, 'connect', _fk_pragma_on_connect)
 
-class NIT(DeclarativeBase):
-    __tablename__ = 'NIT'
-    college_id = Column(Integer, primary_key = True, autoincrement = True)
-    college_name = Column(String(200))
-    college_short = Column(String(20))
-    def __init__(self, college_name=None, college_short=None):
-        self.college_name = college_name
-        self.college_short = college_short
-    def repr(self):
-        return self.college_name
-
-class Event(DeclarativeBase):
-    __tablename__ = 'event'
-    event_id = Column(Integer, primary_key=True, autoincrement=True)
-    event_name = Column(String(200))
-    host = Column(String(200), ForeignKey('NIT.college_id'))
-    start_date = Column(Date)
-    end_date = Column(Date)
-    start_time = Column(Time)
-    end_time = Column(Time)
-    place = Column(String(200))
-    year = Column(Integer)
-    username = Column(String(200), ForeignKey('user.username'))
-    def __init__(self, event_name = None, host = None, username = None, start_date = None, end_date = None, start_time = None, end_time = None, place = None, year = None):
-        self.event_name = event_name
-        self.start_date = start_date
-        self.host = host
-        self.username = username
-        self.end_date = end_date
-        self.start_time = start_time
-        self.end_time = end_time
-        self.place = place
-        self.year = year
+class Institution(DeclarativeBase):
+    __tablename__ = 'institution'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(200))
+    short = Column(String(20))
+    def __init__(self, name=None, short=None):
+        self.name = name
+        self.short = short
     def __repr__(self):
-        return self.name
+        return self.id
 
-class User(DeclarativeBase):
+class User(DeclarativeBase, UserMixin):
     __tablename__ = 'user'
-    username = Column(String(200), primary_key = True)
+    username = Column(String(200), primary_key=True)
     pwhash = Column(String(200))
-    college_id = Column(String(200), ForeignKey('NIT.college_id'))
-    def __init__(self, username = None, college_id = None, password = None):
-        self.college_id = college_id
+    institution = Column(String(200), ForeignKey('institution.id'))
+    def __init__(self, username=None, institution=None, password=None):
+        self.institution = institution
         self.username = username
         self.pwhash = generate_password_hash(password)
     def __repr__(self):
         return self.username
-    def checkPassword(self, password):
+    def check_password(self, password):
         return check_password_hash(self.pwhash, password)
 
-class Uploaded_File(DeclarativeBase):
+class Person(DeclarativeBase):
+    __tablename__ = 'person'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(100))
+    institution = Column(Integer, ForeignKey('institution.id'))
+    designation = Column(String(100))
+    role = Column(String(100))
+    contact_no = Column(Integer)
+    email_id = Column(String(200))
+    image_url = Column(String(200))
+    def __init__(self, name=None, institution=None, designation=None, role=None, contact_no=None, email_id=None):
+        self.name = name
+        self.institution = institution
+        self.designation = designation
+        self.role = role
+        self.contact_no = contact_no
+        self.email_id = email_id
+    def __repr__(self):
+        return self.id
+
+class Fest(DeclarativeBase):
+    __tablename__ = 'fest'
+    year = Column(Integer, primary_key=True)
+    host = Column(String, ForeignKey('institution.id'))
+    no_of_days = Column(Integer)
+    def __init__(self, year=None, no_of_days=None, host=None):
+        self.year = year
+        self.host = host
+        self.no_of_days = no_of_days
+    def __repr__(self):
+        return self.year
+
+class Event(DeclarativeBase):
+    __tablename__ = 'event'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    fest = Column(Integer, ForeignKey('fest.year'))
+    name = Column(String(200))
+    day = Column(Integer)
+    start_time = Column(Time)
+    end_time = Column(Time)
+    venue = Column(String(200))
+    def __init__(self, fest=None, name=None, day=None, start_time=None, end_time=None, venue=None):
+        self.fest = fest
+        self.name = name
+        self.day = day
+        self.start_time = start_time
+        self.end_time = end_time
+        self.venue = venue
+    def __repr__(self):
+        return self.id
+
+class Result(DeclarativeBase):
+    __tablename__ = 'result'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    event_id = Column(Integer, ForeignKey('event.id'))
+    first_name = Column(String(100))
+    first_institution = Column(Integer, ForeignKey('institution.id'))
+    second_name = Column(String(100))
+    second_institution = Column(Integer, ForeignKey('institution.id'))
+    third_name = Column(String(100))
+    third_institution = Column(Integer, ForeignKey('institution.id'))
+    def __init__(self, event_id=None, first_name=None, first_institution=None, second_name=None, second_institution=None, third_institution=None, third_name=None):
+        self.first_institution = first_institution
+        self.first_name = first_name
+        self.second_institution = second_institution
+        self.second_name = second_name
+        self.third_institution = third_institution
+        self.third_name = third_name
+        self.event_id = event_id
+    def __repr__(self):
+        return self.id
+
+class UploadedFile(DeclarativeBase):
     __tablename__ = 'uploaded_file'
     file_id = Column(Integer, primary_key=True, autoincrement=True)
     file_name = Column(String)
     username = Column(String(200), ForeignKey('user.username'))
     upload_time = Column(TIMESTAMP)
-    event = Column(String(200), ForeignKey('event.event_id'))
-    def __init__(self, filename = None, username = None, upload_time = None, event = None):
+    event_id = Column(String(200), ForeignKey('event.id'))
+    def __init__(self, filename=None, username=None, upload_time=None, event_id=None):
         self.username = username
         self.upload_time = upload_time
-        self.event = event
+        self.event_id = event
         self.file_name = filename
     def __repr__(self):
         return self.photo_id
@@ -83,18 +130,18 @@ class Uploaded_File(DeclarativeBase):
 #activity-type(Enum)
 class ActivityLog(DeclarativeBase):
     __tablename__ = 'activity-log'
-    log_id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     change_time = Column(TIMESTAMP)
     user = Column(String(200), ForeignKey('user.username'))
     file = Column(Integer, ForeignKey('uploaded_file.file_id'))
-    event = Column(Integer, ForeignKey('event.event_id'))
-    activity_type = Column(Enum('added event','added photo','removed photo','added document','removed document'))
-    def __init__(self, change_time = None, user = None, activity_type = None, event = None, file_id = None):
+    event_id = Column(Integer, ForeignKey('event.id'))
+    activity_type = Column(Enum('added event', 'added photo', 'removed photo', 'added document', 'removed document', 'added result', 'added fest', 'added person'))
+    def __init__(self, change_time=None, user=None, activity_type=None, event_id=None, file_id=None):
         self.change_time = change_time
         self.user = user
         self.activity_type = activity_type
         self.file = file_id
-        self.event = event
+        self.event_id = event_id
     def __repr__(self):
         return self.id
 
