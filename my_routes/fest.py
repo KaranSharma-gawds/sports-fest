@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request
 from models import Fest
 from connection import DatabaseHandler
 from . import sports_fest
