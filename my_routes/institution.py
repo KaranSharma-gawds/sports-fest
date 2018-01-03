@@ -6,7 +6,7 @@ from . import institute
 
 session = DatabaseHandler.connect_to_database()
 
-# @login_required    #implement when login is completed
+@login_required    #implement when login is completed
 @institute.route('/get', methods=['GET'])
 def get_institutions():
     colleges = Institution.query.all()
@@ -21,7 +21,7 @@ def get_institutions():
     if not college_json_array:
         return {
             'status':'BAD REQUEST',
-            'message':'INSTITUTION DOES NOT EXIST'
+            'message':'NO INSTITUTION YET'
         }, 201
     return {
         'status':'OK',

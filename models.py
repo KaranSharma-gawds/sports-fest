@@ -50,13 +50,14 @@ class Person(DeclarativeBase):
     contact_no = Column(Integer)
     email_id = Column(String(200))
     image_url = Column(String(200))
-    def __init__(self, name=None, institution=None, designation=None, role=None, contact_no=None, email_id=None):
+    def __init__(self, name=None, institution=None, designation=None, role=None, contact_no=None, email_id=None, image_url=None):
         self.name = name
         self.institution = institution
         self.designation = designation
         self.role = role
         self.contact_no = contact_no
         self.email_id = email_id
+        self.image_url = image_url
     def __repr__(self):
         return self.id
 

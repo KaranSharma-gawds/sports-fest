@@ -2,46 +2,78 @@ import os
 import datetime as datetime, time
 import config as config
 from flask import Blueprint, request, url_for, render_template, redirect, send_file #, flash
-from models import NIT, Event, ActivityLog, User, Uploaded_File
+from models import Institution, Event, ActivityLog, User, UploadedFile, Person, Result, Fest
 from connection import DatabaseHandler
 from flask_restful import reqparse
 from werkzeug.utils import secure_filename
-# from __init__ import app
-
+from my_routes.institution import InstitutionRoutes
 sports = Blueprint('sports', __name__)
 # database_handler = DatabaseHandler()
 session = DatabaseHandler.connect_to_database()
 # session.execute('Pragma foreign_keys = ON')
 
-@sports.route('/add-nit', methods = ['GET', 'POST'])
-def addNit():
+@sports.route('/add-institution', methods = ['GET', 'POST'])
+def add_institution():
     if request.method == 'POST':
-        info = NIT(college_name = request.data['college_name'], college_short = request.data['college_short'])
+        info = Institution(college_name = request.data['college_name'], college_short = request.data['college_short'])
         session.add(info)
         session.commit()
-        return {'status':'successfully added NIT'}
+        return {'status':'successfully added institution'}
     else:
         return {'status':'running'}
 
-@sports.route('/all-nits', methods = ['GET'])
-def getNits():
-    colleges = NIT.query.all()
-    college_json_array = []
-    for college in colleges:
-        user_json = {'collegename':college.college_name, 'college short':college.college_short, 'college id':college.college_id}
-        college_json_array.append(user_json)
-    return college_json_array, 200
+#@sports.route('/all-nits', methods = ['GET'])
+#def get_institution():
+#    InstitutionRoutes.get_institutions()
+
+# def get_institution():
+#     colleges = Institution.query.all()
+#     college_json_array = []
+#     for college in colleges:
+#         user_json = {'collegename':college.college_name, 'college short':college.college_short, 'college id':college.college_id}
+#         college_json_array.append(user_json)
+#     return college_json_array, 200
+
+@sports.route('/add-person', methods = ['GET', 'POST'])
+def add_person():
+    if request.method == 'POST':
+        name = request.data['name']
+        institution = request.data['institution']
+        designation = request.data['designation']
+        role = request.data['role']
+        contact_no = request.data['contact no']
+        email_id = request.data['email_id']
+        if 'photo' not in request.files:
+            # flash('no photo part in request')
+            print('no photo part in request')
+            return redirect(request.url)
+        photo = request.files['photo']
+        if photo.filename == '':
+            # flash('no photo selected')
+            print('no photo selected')
+            return redirect(request.url)
+        if photo and allowedPhoto(photo.filename):
+            filename = secure_filename(photo.filename)
+            uploadTime = datetime.datetime.now()
+            filename = uploadTime + '_' + filename
+            photo.save(os.path.join(config.PHOTOS_UPLOAD_FOLDER, filename))
+            info = Person(name=name, institution=institution, designation=designation, role = role, contact_no=contact_no, email_id=email_id, image_url=filename)
+            session.add(info)
+            session.commit()
+            addActivityLog(changeTime=uploadTime, user=request.data['username'], activityType='added person', file=None, eventId=request.data['event'])
+        return {'status': 'added person'}
+    else:
+        return {'status':running}
 
 @sports.route('/add-event', methods = ['GET', 'POST'])
 def addEvent():
     if request.method == 'POST':
         addTime = datetime.datetime.now()
-        startDate = datetime.datetime.strptime(request.data['start_date'], '%d-%m-%Y').date()
-        endDate = datetime.datetime.strptime(request.data['end_date'], '%d-%m-%Y').date()
+        day = request.data['day']
         startTime = datetime.datetime.strptime(request.data['start_time'], '%H-%M').time()
         endTime = datetime.datetime.strptime(request.data['end_time'], '%H-%M').time()
         username = request.data['username']
-        info = Event(event_name = request.data['event_name'], host = request.data['host'], username = username, start_date = startDate, end_date = endDate, start_time = startTime, end_time = endTime, place = request.data['place'], year = request.data['year'])
+        info = Event(event_name = request.data['event_name'], host = request.data['host'], username = username, day=day, start_time = startTime, end_time = endTime, place = request.data['place'], year = request.data['year'])
         session.add(info)
         session.commit()
         eventId = info.event_id
@@ -127,11 +159,12 @@ def uploadPhoto():
         if photo and allowedPhoto(photo.filename):
             filename = secure_filename(photo.filename)
             uploadTime = datetime.datetime.now()
+            filename = uploadTime + '_' + filename
             # username = request.data['username']
             # info = Uploaded_File(upload_time = uploadTime, filename = photo.filename, username = username, event = request.data['event'])
+            photo.save(os.path.join(config.PHOTOS_UPLOAD_FOLDER, filename))
             info = Uploaded_File(upload_time = uploadTime, filename = photo.filename, username = 'naruto', event = '7')
             session.add(info)
-            photo.save(os.path.join(config.PHOTOS_UPLOAD_FOLDER, filename))
             session.commit()
             file = Uploaded_File.query.filter_by(upload_time = uploadTime).first()
             file_id = file.file_id
@@ -154,11 +187,12 @@ def uploadDocument():
         if doc and allowedDocument(doc.filename):
             filename = secure_filename(doc.filename)
             uploadTime = datetime.datetime.now()
+            filename = uploadTime + '_' + filename
             # username = request.data['username']
             # info = Uploaded_File(upload_time = uploadTime, filename = doc.filename, username = username, event = request.data['event'])
-            info = Uploaded_File(upload_time = uploadTime, filename = doc.filename, username = 'naruto', event = '7')
-            session.add(info)
             doc.save(os.path.join(config.DOCUMENTS_UPLOAD_FOLDER, filename))
+            info = Uploaded_File(upload_time = uploadTime, filename = filename, username = 'naruto', event = '7')
+            session.add(info)
             session.commit()
             file = Uploaded_File.query.filter_by(upload_time = uploadTime).first()
             file_id = file.file_id
