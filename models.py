@@ -94,8 +94,7 @@ class Event(DeclarativeBase):
 
 class Result(DeclarativeBase):
     __tablename__ = 'result'
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    event_id = Column(Integer, ForeignKey('event.id'))
+    event_id = Column(Integer, ForeignKey('event.id'), primary_key=True)
     first_name = Column(String(100))
     first_institution = Column(Integer, ForeignKey('institution.id'))
     second_name = Column(String(100))

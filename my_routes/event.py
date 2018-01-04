@@ -49,6 +49,29 @@ def get_events(year):
         })
     return {
         'status':'OK',
-        'message':'RUNNING',
+        'message':'SUCCESS',
         'array':event_json_array
+    }, 200
+
+@events.route('/<int:year>/get/<int:id>', methods=['GET'])
+def get_event(year, id):
+    event = Event.query.filter_by(fest=year, id=id).first()
+    if not event:
+        return {
+            'status':'BAD REQUEST',
+            'message':'NO SUCH FEST'
+        }, 201
+    event_json = {
+        'year':event.fest,
+        'name':event.name,
+        'day':event.day,
+        'start_time':str(event.start_time),
+        'end_time':str(event.end_time),
+        'venue':event.venue,
+        'id':event.id
+    }
+    return {
+        'status':'OK',
+        'message':'SUCCESS',
+        'event':event_json
     }, 200
