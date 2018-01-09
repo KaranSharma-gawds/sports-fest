@@ -65,9 +65,9 @@ def upload_doc():
     else:
         return render_template('upload-file.html', filetype='doc', url=request.url)
 
-@upload_route.route('/image/get', methods=['GET'])
-def load_images():
-    event_id = request.data['event_id']
+@upload_route.route('/image/get/<int:event_id>', methods=['GET'])
+def load_images(event_id):
+    # event_id = request.data['event_id']
     if not Event.query.filter_by(id=event_id).first():
         return {
             'status':'BAD REQUEST',
@@ -76,16 +76,16 @@ def load_images():
     image_records = UploadedFile.query.filter_by(event_id=event_id).all()
     image_url_array = []
     for image_record in image_records:
-        image_url_array.append(image_record.filename)
+        image_url_array.append(image_record.file_name)
     return {
         'status':'OK',
         'message':'SUCCESS',
         'array':image_url_array
     }, 200
 
-@upload_route.route('/doc/get', methods=['GET'])
-def load_docs():
-    event_id = request.data['event_id']
+@upload_route.route('/doc/get/<int:event_id>', methods=['GET'])
+def load_docs(event_id):
+    # event_id = request.data['event_id']
     if not Event.query.filter_by(id=event_id).first():
         return {
             'status':'BAD REQUEST',
@@ -94,7 +94,7 @@ def load_docs():
     doc_records = UploadedFile.query.filter_by(event_id=event_id).all()
     doc_url_array = []
     for doc_record in doc_records:
-        doc_url_array.append(doc_record.filename)
+        doc_url_array.append(doc_record.file_name)
     return {
         'status':'OK',
         'message':'SUCCESS',
