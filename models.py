@@ -116,13 +116,9 @@ class UploadedFile(DeclarativeBase):
     __tablename__ = 'uploaded_file'
     file_id = Column(Integer, primary_key=True, autoincrement=True)
     file_name = Column(String)
-    username = Column(String(200), ForeignKey('user.username'))
-    upload_time = Column(TIMESTAMP)
     event_id = Column(String(200), ForeignKey('event.id'))
-    def __init__(self, filename=None, username=None, upload_time=None, event_id=None):
-        self.username = username
-        self.upload_time = upload_time
-        self.event_id = event
+    def __init__(self, filename=None, event_id=None):
+        self.event_id = event_id
         self.file_name = filename
     def __repr__(self):
         return self.photo_id

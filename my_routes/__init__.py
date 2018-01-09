@@ -8,6 +8,7 @@ people = Blueprint('people', __name__)
 sports_fest = Blueprint('sports_fest', __name__)
 events = Blueprint('events', __name__)
 event_result = Blueprint('event_result', __name__)
+upload_route = Blueprint('upload_route', __name__)
 
 from . import institution
 from . import user
@@ -15,6 +16,7 @@ from . import person
 from . import fest
 from . import event
 from . import result
+from . import upload
 
 def initialise_routes(app):
     login_manager.init_app(app)
@@ -24,3 +26,4 @@ def initialise_routes(app):
     app.register_blueprint(sports_fest, url_prefix='/fest')
     app.register_blueprint(events, url_prefix='/event')
     app.register_blueprint(event_result, url_prefix='/result')
+    app.register_blueprint(upload_route, url_prefix='/upload')
