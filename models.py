@@ -1,6 +1,6 @@
 import config as config
 from sqlalchemy import Column, UniqueConstraint, create_engine, Date, Time, TIMESTAMP
-from sqlalchemy import Integer, ForeignKey, String, TypeDecorator, Unicode, Enum, event
+from sqlalchemy import Integer, ForeignKey, String, TypeDecorator, Unicode, event
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.dialects.sqlite import BLOB
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -131,7 +131,7 @@ class ActivityLog(DeclarativeBase):
     user = Column(String(200), ForeignKey('user.username'))
     file = Column(Integer, ForeignKey('uploaded_file.file_id'))
     event_id = Column(Integer, ForeignKey('event.id'))
-    activity_type = Column(Enum('added event', 'added photo', 'removed photo', 'added document', 'removed document', 'added result', 'added fest', 'added person'))
+    activity_type = Column(config.ActivityType)
     def __init__(self, change_time=None, user=None, activity_type=None, event_id=None, file_id=None):
         self.change_time = change_time
         self.user = user
