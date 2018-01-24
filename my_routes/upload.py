@@ -2,12 +2,13 @@ import datetime as datetime
 from flask import request, redirect, render_template
 from models import UploadedFile, Event
 from connection import DatabaseHandler
+from flask_login import login_required
 from . import upload_route
 from .upload_file import upload_file
 
 session = DatabaseHandler.connect_to_database()
-
 @upload_route.route('/image/add', methods=['GET', 'POST'])
+@login_required
 def upload_image():
     if request.method == 'POST':
         if 'photo' not in request.files:

@@ -1,5 +1,6 @@
 import datetime as datetime
 from flask import request
+from flask_login import login_required
 from models import Event, Fest, Result
 from connection import DatabaseHandler
 from . import event_result
@@ -26,6 +27,7 @@ def get_result(event_id):
     }, 200
 
 @event_result.route('/add', methods=['GET','POST'])
+@login_required
 def add_result():
     if request.method == 'POST':
         event = request.data['event']

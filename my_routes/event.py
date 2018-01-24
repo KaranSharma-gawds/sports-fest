@@ -1,12 +1,13 @@
 import datetime as datetime
 from flask import request
+from flask_login import login_required
 from models import Event, Fest
 from connection import DatabaseHandler
 from . import events
 
 session = DatabaseHandler.connect_to_database()
-
 @events.route('/<int:year>/add', methods=['GET', 'POST'])
+@login_required
 def add_event(year):
     if request.method == 'POST':
         req_fest = Fest.query.filter_by(year=year).first()

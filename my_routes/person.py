@@ -1,4 +1,5 @@
 from flask import request, redirect, render_template
+from flask_login import login_required
 from models import Person
 from connection import DatabaseHandler
 import os, config as config
@@ -34,6 +35,7 @@ def get_people():
     }, 200
 
 @people.route('/add', methods=['GET','POST'])
+@login_required
 def add_person():
     if request.method == 'POST':
         if 'photo' not in request.files:

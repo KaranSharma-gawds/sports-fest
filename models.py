@@ -1,11 +1,16 @@
 import config as config
+from flask_api import FlaskAPI
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, UniqueConstraint, create_engine, Date, Time, TIMESTAMP
 from sqlalchemy import Integer, ForeignKey, String, TypeDecorator, Unicode, event
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.dialects.sqlite import BLOB
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from enum import Enum
+app = FlaskAPI(__name__)
+# from __init__ import app
+db = SQLAlchemy(app)
 engine = create_engine(config.sqlite['CREATE_ENGINE_URL'], echo=True)
 DeclarativeBase = declarative_base(engine)
 metadata = DeclarativeBase.metadata
@@ -131,7 +136,7 @@ class ActivityLog(DeclarativeBase):
     user = Column(String(200), ForeignKey('user.username'))
     file = Column(Integer, ForeignKey('uploaded_file.file_id'))
     event_id = Column(Integer, ForeignKey('event.id'))
-    activity_type = Column(config.ActivityType)
+    activity_type = Column(db.Enum(config.ActivityType))
     def __init__(self, change_time=None, user=None, activity_type=None, event_id=None, file_id=None):
         self.change_time = change_time
         self.user = user

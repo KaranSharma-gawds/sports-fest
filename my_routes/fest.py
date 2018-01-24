@@ -1,4 +1,5 @@
 from flask import request
+from flask_login import login_required
 from models import Fest
 from connection import DatabaseHandler
 from . import sports_fest
@@ -27,6 +28,7 @@ def get_all_fests():
     }, 200
 
 @sports_fest.route('/add', methods=['GET','POST'])
+@login_required
 def add_sports_fest():
     if request.method == 'POST':
         year = request.data['year']

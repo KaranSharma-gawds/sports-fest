@@ -27,12 +27,12 @@ def user_login():
             'message':'RUNNING'
         }, 200
     user_name = request.data['user_name']
-    user = load_user(user_name)
     if not user:
         return {
             'status':'BAD REQUEST',
             'message':'USER DOES NOT EXIST'
         }, 201
+    user = load_user(user_name)
     next = request.args.get('next')
     if not is_safe_url(next):
         return abort(400)
