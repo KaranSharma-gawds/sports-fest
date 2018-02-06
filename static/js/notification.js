@@ -1,11 +1,12 @@
 $.ajax({
 	dataType : "json",
-	url: "http://5a5b96f44611170012fe752c.mockapi.io/api/notification",
+	// url: "http://5a5b96f44611170012fe752c.mockapi.io/api/notification",
+	url: "http://localhost:8080/upload/doc/get",
 	method: "GET",
 	success : function(data){
 		console.log(data);
-		for(var i = 0; i < data.length; i++){
-      		var x = "<div class='col-12 notification'><span>"+data[i].title+"</span><a style='position:absolute; right:10px' class='btn btn-primary download-btn' href='"+data[i].file_link+"' role='button'>Download</a></div>";
+		for(var i = 0; i < data.array.length; i++){
+      		var x = "<div class='col-12 notification'><span>"+data.array[i]+"</span><a style='position:absolute; right:10px' class='btn btn-primary download-btn' href=`{{ url_for('static', filename='documents/'+data.array[i]) }}` role='button'>Download</a></div>";
       		// var y ="<div class='card card-body noti-card'> " +data[i].file_link +"</div>"
       	$("#notification_div").append(x);
       	
@@ -18,7 +19,7 @@ $.ajax({
       	})
 
 
-      	console.log(x);   
+
     }
 	}
 });

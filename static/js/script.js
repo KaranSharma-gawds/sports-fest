@@ -150,7 +150,7 @@ $(document).ready(function(){
   const Item2 = ({name,designation, institute,image_url}) =>
   `<div class="col-6 col-md-2 profile_card" style="margin-bottom:30px">
     <div class="card" style="">
-      <img class="card-img-top" src='${image_url}' alt="Card image cap">
+      <img class="card-img-top" src="static/photos/${image_url}" alt="Card image cap">
       <div class="card-body" style="text-align:center">
         <h4 class="card-text">${name}</h4>
         <h6 class="card-text">${designation}</h6>

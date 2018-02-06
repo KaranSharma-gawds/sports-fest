@@ -101,3 +101,21 @@ def load_docs(event_id):
         'message':'SUCCESS',
         'array':doc_url_array
     }, 200
+
+
+@upload_route.route('/doc/get', methods=['GET'])
+def load_all_docs():
+    # event_id = request.data['event_id']
+    doc_records = UploadedFile.query.all()  #gives for all years TODO: change this somehow to handle this
+    doc_url_array = []
+    for doc_record in doc_records:
+        doc_url_array.append(doc_record.file_name)
+    return {
+        'status':'OK',
+        'message':'SUCCESS',
+        'array':doc_url_array
+    }, 200
+
+@upload_route.route('/notifications', methods=['GET'])
+def notifications():
+    return render_template('notifications.html')

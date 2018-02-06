@@ -20,7 +20,7 @@ def get_people():
             'role':person.role,
             'contact_no':person.contact_no,
             'email_id':person.email_id,
-            'image_url':'photos/'+person.image_url,
+            'image_url':person.image_url,
             'id':person.id
         })
     if people_json_array.count == 0:
