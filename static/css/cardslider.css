@@ -1,0 +1,73 @@
+#main{
+    position: absolute;
+    top:35%;
+    left: 45%;
+}
+#side1{
+    height: 250px;
+    width: 200px;
+    position: absolute;
+    transform: translateX(0px) scale(1.5);
+    z-index: 99;
+    border: 2px solid gray;
+    transition: all .5s;
+}
+#side2{
+    height: 250px;
+    width: 200px;
+    position: absolute;
+    transform: translateX(-100px);
+    z-index: 9;
+    border: 2px solid gray;
+    transition: all .5s;
+}
+#side3{
+    height: 250px;
+    width: 200px;
+    position: absolute;
+    transform: translateX(100px);
+    z-index: 9;
+    border: 2px solid gray;
+    transition: all .5s;
+}
+#pre{
+    text-align: center;
+    font-size: 25px;
+    font-family: Roboto Condensed;
+    padding-top: 18px;
+    height: 10vh;
+    border-style: solid;
+    border-top: none;
+    border-bottom:none;
+    border-color:#1d1d1d;
+}
+#nex{
+     text-align: center;
+    font-size: 25px;
+    font-family: Roboto Condensed;
+    padding-top: 18px;
+}
+#pre:hover{
+    cursor: pointer;
+}
+
+#nex:hover{
+    cursor: pointer;
+}
+.cardsliderwrap{
+    margin-left:25vw;
+    margin-top:15vh;
+}
+.sliderbtn{
+    position: absolute;
+    right:0;
+    bottom: 0;
+    height:10vh;
+    width:40vw;
+    background-color:white;
+}
+@media only screen and (max-width: 500px){
+    .sliderbtn{
+        width:100vw;
+    }
+}
