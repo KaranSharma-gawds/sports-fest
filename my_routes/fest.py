@@ -27,25 +27,19 @@ def get_all_fests():
         'array':fest_json_array
     }, 200
 
-@sports_fest.route('/add', methods=['GET','POST'])
+@sports_fest.route('/add', methods=['POST'])
 @login_required
 def add_sports_fest():
-    if request.method == 'POST':
-        year = request.data['year']
-        host = request.data['host']
-        no_of_days = request.data['no_of_days']
-        info = Fest(year=year, host=host, no_of_days=no_of_days)
-        session.add(info)
-        session.commit() 
-        return {
-            'status':'OK',
-            'message':'SUCCESSFULLY ADDED FEST'
-        }, 200
-    else:
-        return {
-            'status':'OK',
-            'message':'RUNNING',
-        }, 200
+    year = request.data['year']
+    host = request.data['host']
+    no_of_days = request.data['no_of_days']
+    info = Fest(year=year, host=host, no_of_days=no_of_days)
+    session.add(info)
+    session.commit() 
+    return {
+        'status':'OK',
+        'message':'SUCCESSFULLY ADDED FEST'
+    }, 200
 
 @sports_fest.route('/get/<int:year>', methods=['GET'])
 def get_fest(year):

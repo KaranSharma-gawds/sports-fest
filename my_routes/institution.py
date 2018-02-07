@@ -29,22 +29,16 @@ def get_institutions():
         'array':college_json_array
     }, 200
 
-@institute.route('/add', methods=['GET', 'POST'])
+@institute.route('/add', methods=['POST'])
 @login_required
 def add_institution():
-    if request.method == 'POST':
-        info = Institution(name = request.data['college_name'], short = request.data['college_short'])
-        session.add(info)
-        session.commit()
-        return {
-            'status':'OK',
-            'message':'SUCCESS',
-        }, 200
-    else:
-        return {
-            'status':'OK',
-            'message':'RUNNING',
-        }, 200
+    info = Institution(name = request.data['college_name'], short = request.data['college_short'])
+    session.add(info)
+    session.commit()
+    return {
+        'status':'OK',
+        'message':'SUCCESS',
+    }, 200
 
 @institute.route('/get/<int:id>', methods=['GET'])
 def get_institution(id):

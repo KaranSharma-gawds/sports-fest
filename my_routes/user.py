@@ -19,13 +19,8 @@ def load_user(user_id):
         return None
     return my_user
 
-@login.route('/login', methods=['GET', 'POST'])
+@login.route('/login', methods=['POST'])
 def user_login():
-    if request.method=='GET':
-        return {
-            'status':'SUCCESS',
-            'message':'RUNNING'
-        }, 200
     user_name = request.data['user_name']
     if not user:
         return {
