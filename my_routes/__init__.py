@@ -20,10 +20,10 @@ from . import upload
 
 def initialise_routes(app):
     login_manager.init_app(app)
-    app.register_blueprint(institute, url_prefix='/institute')
-    app.register_blueprint(login, url_prefix='/user')
-    app.register_blueprint(people, url_prefix='/people')
-    app.register_blueprint(sports_fest, url_prefix='/fest')
-    app.register_blueprint(events, url_prefix='/event')
-    app.register_blueprint(event_result, url_prefix='/result')
-    app.register_blueprint(upload_route, url_prefix='/upload')
+    app.register_blueprint(institute, url_prefix='/api/institute')
+    app.register_blueprint(login, url_prefix='/api/user')
+    app.register_blueprint(people, url_prefix='/api/people')
+    app.register_blueprint(sports_fest, url_prefix='/api/fest')
+    app.register_blueprint(events, url_prefix='/api/event')
+    app.register_blueprint(event_result, url_prefix='/api/result')
+    app.register_blueprint(upload_route, url_prefix='/api/upload')

@@ -7,64 +7,59 @@ from . import upload_route
 from .upload_file import upload_file
 
 session = DatabaseHandler.connect_to_database()
-@upload_route.route('/image/add', methods=['GET', 'POST'])
+@upload_route.route('/image/add', methods=['POST'])
 @login_required
 def upload_image():
-    if request.method == 'POST':
-        if 'photo' not in request.files:
-            # flash('no photo part in request')
-            print('no photo part in request')
-            return redirect(request.url)
-        photo = request.files['photo']
-        obj = upload_file(photo, 'IMG')
-        if obj['status'] == 'BAD REQUEST':
-            print(obj['message'])
-            return obj
-        if obj['status'] == 'OK':
-            print(obj['message'])
-            filename = obj['filename']
-            info = UploadedFile(filename=filename, event_id=request.data['event_id'])
-            session.add(info)
-            session.commit()
-            return {
-                'status':'OK',
-                'message':'SUCCESSFULLY ADDED IMAGE'
-            }, 200
+    if 'photo' not in request.files:
+        # flash('no photo part in request')
+        print('no photo part in request')
+        return redirect(request.url)
+    photo = request.files['photo']
+    obj = upload_file(photo, 'IMG')
+    if obj['status'] == 'BAD REQUEST':
+        print(obj['message'])
+        return obj
+    if obj['status'] == 'OK':
+        print(obj['message'])
+        filename = obj['filename']
+        info = UploadedFile(filename=filename, event_id=request.data['event_id'])
+        session.add(info)
+        session.commit()
         return {
-            'status':'ERROR',
-            'message':'UNPREDICTED ERROR OCCURRED'
-        }
-    else:
-        return render_template('upload-file.html', filetype='photo', url=request.url)
+            'status':'OK',
+            'message':'SUCCESSFULLY ADDED IMAGE'
+        }, 200
+    return {
+        'status':'ERROR',
+        'message':'UNPREDICTED ERROR OCCURRED'
+    }
 
-@upload_route.route('/doc/add', methods=['GET', 'POST'])
+@upload_route.route('/doc/add', methods=['POST'])
+@login_required
 def upload_doc():
-    if request.method == 'POST':
-        if 'doc' not in request.files:
-            # flash('no doc part in request')
-            print('no doc part in request')
-            return redirect(request.url)
-        photo = request.files['doc']
-        obj = upload_file(photo, 'DOC')
-        if obj['status'] == 'BAD REQUEST':
-            print(obj['message'])
-            return obj
-        if obj['status'] == 'OK':
-            print(obj['message'])
-            filename = obj['filename']
-            info = UploadedFile(filename=filename, event_id=request.data['event_id'])
-            session.add(info)
-            session.commit()
-            return {
-                'status':'OK',
-                'message':'SUCCESSFULLY ADDED DOC'
-            }, 200
+    if 'doc' not in request.files:
+        # flash('no doc part in request')
+        print('no doc part in request')
+        return redirect(request.url)
+    photo = request.files['doc']
+    obj = upload_file(photo, 'DOC')
+    if obj['status'] == 'BAD REQUEST':
+        print(obj['message'])
+        return obj
+    if obj['status'] == 'OK':
+        print(obj['message'])
+        filename = obj['filename']
+        info = UploadedFile(filename=filename, event_id=request.data['event_id'])
+        session.add(info)
+        session.commit()
         return {
-            'status':'ERROR',
-            'message':'UNPREDICTED ERROR OCCURRED'
-        }
-    else:
-        return render_template('upload-file.html', filetype='doc', url=request.url)
+            'status':'OK',
+            'message':'SUCCESSFULLY ADDED DOC'
+        }, 200
+    return {
+        'status':'ERROR',
+        'message':'UNPREDICTED ERROR OCCURRED'
+    }
 
 @upload_route.route('/image/get/<int:event_id>', methods=['GET'])
 def load_images(event_id):
@@ -102,7 +97,6 @@ def load_docs(event_id):
         'array':doc_url_array
     }, 200
 
-
 @upload_route.route('/doc/get', methods=['GET'])
 def load_all_docs():
     # event_id = request.data['event_id']
@@ -116,6 +110,3 @@ def load_all_docs():
         'array':doc_url_array
     }, 200
 
-@upload_route.route('/notifications', methods=['GET'])
-def notifications():
-    return render_template('notifications.html')
