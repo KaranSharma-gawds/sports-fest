@@ -117,7 +117,7 @@ $(document).ready(function(){
     $.ajax({
       dataType: "json",
       // url: "https://5a5b96f44611170012fe752c.mockapi.io/api/event",
-      url: "http://localhost:8080/event/2016/get",
+      url: "http://localhost:8080/api/event/2016/get",
 
       method: "GET",
       success: function(data){
@@ -130,7 +130,7 @@ $(document).ready(function(){
           // console.log(v);
           // console.log(k);
           console.log(v.id);
-          obj.link = "event/#"+v.id;
+          obj.link = "event#"+v.id;
           obj.name = v.name;
           console.log(v.name);         // console.log("k.start_name");
           templateData.push(obj);
@@ -162,7 +162,7 @@ $(document).ready(function(){
   $.ajax({
       dataType: "json",
       // url: "https://5a5b96f44611170012fe752c.mockapi.io/api/profile",
-      url: "http://localhost:8080/people/get",
+      url: "http://localhost:8080/api/people/get",
       method: "GET",
       success: function(data){
         console.log(data.array);

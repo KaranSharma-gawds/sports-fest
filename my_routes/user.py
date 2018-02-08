@@ -19,10 +19,10 @@ def load_user(user_id):
         return None
     return my_user
 
-@login.route('/login', methods=['GET'])
+@login.route('/login', methods=['POST'])
 def user_login():
     user_name = request.data['user_name']
-    if not user:
+    if not user_name:
         return {
             'status':'BAD REQUEST',
             'message':'USER DOES NOT EXIST'
@@ -32,7 +32,7 @@ def user_login():
     if not is_safe_url(next):
         return abort(400)
     return {
-        'status':'SUCCESS',
+        'status':'OK',
         'message':'SUCCESSFULLY LOGGED IN'
     }, 200
 
@@ -70,3 +70,4 @@ def register():
         'status':'SUCCESS',
         'message':'SUCCESSFULLY REGISTERED'
     }, 200
+
