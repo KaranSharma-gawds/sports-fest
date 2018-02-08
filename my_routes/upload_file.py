@@ -17,8 +17,8 @@ def upload_file(file, file_type):
         }
     if (file_type == 'IMG' and allowed_photo(file.filename)) or (file_type == 'DOC' and allowed_document(file.filename)):
         filename = secure_filename(file.filename)
-        # upload_time = datetime.datetime.timestamp(datetime.datetime.now())
-        # filename = str(upload_time) + '_' + filename
+        upload_time = datetime.datetime.timestamp(datetime.datetime.now())
+        filename = str(upload_time) + '_' + filename
         if(file_type == 'IMG'):
             file.save(os.path.join(config.PHOTOS_UPLOAD_FOLDER, filename))
         else:
@@ -26,8 +26,8 @@ def upload_file(file, file_type):
         return {
             'status':'OK',
             'message':'FILE SAVED',
-            'filename':filename
-            # 'upload_time':upload_time
+            'filename':filename,
+            'upload_time':upload_time
         }
     else:
         return {

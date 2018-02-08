@@ -1,4 +1,9 @@
 from . import login, login_manager
+# from urlparse import urlparse, urljoin
+try:
+    from urllib.parse import urlparse, urljoin
+except ImportError:
+     from urlparse import urlparse, urljoin
 from flask import request, abort
 from models import User, Institution
 from connection import DatabaseHandler
@@ -22,11 +27,17 @@ def load_user(user_id):
 @login.route('/login', methods=['POST'])
 def user_login():
     user_name = request.data['user_name']
-    if not user_name:
+    user = User.query.filter_by(username=user_name).first()
+    if not user:
         return {
             'status':'BAD REQUEST',
             'message':'USER DOES NOT EXIST'
         }, 201
+    if not user.check_password(request.data['password']):
+        return {
+            'status':'ERROR',
+            'message':'INVALID PASSWORD'
+        }
     user = load_user(user_name)
     next = request.args.get('next')
     if not is_safe_url(next):
