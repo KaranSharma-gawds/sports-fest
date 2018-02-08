@@ -69,11 +69,11 @@ class Person(DeclarativeBase):
 class Fest(DeclarativeBase):
     __tablename__ = 'fest'
     year = Column(Integer, primary_key=True)
-    host = Column(String, ForeignKey('institution.id'))
+    # host = Column(String, ForeignKey('institution.id'))
     no_of_days = Column(Integer)
-    def __init__(self, year=None, no_of_days=None, host=None):
+    def __init__(self, year=None, no_of_days=None):
         self.year = year
-        self.host = host
+        # self.host = host
         self.no_of_days = no_of_days
     def __repr__(self):
         return self.year
