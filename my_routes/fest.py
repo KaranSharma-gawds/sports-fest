@@ -13,7 +13,7 @@ def get_all_fests():
     for  each_fest in fests:
         fest_json_array.append({
             'year':each_fest.year,
-            'host':each_fest.host,
+            # 'host':each_fest.host,
             'no_of_days':each_fest.no_of_days
         })
     if fest_json_array.count == 0:
@@ -31,7 +31,7 @@ def get_all_fests():
 @login_required
 def add_sports_fest():
     year = request.data['year']
-    host = request.data['host']
+    # host = request.data['host']
     no_of_days = request.data['no_of_days']
     info = Fest(year=year, host=host, no_of_days=no_of_days)
     session.add(info)
@@ -46,7 +46,7 @@ def get_fest(year):
     req_fest = Fest.query.filter_by(year=year).first()
     fest_json = {
         'year':req_fest.year,
-        'host':req_fest.host,
+        # 'host':req_fest.host,
         'no_of_days':req_fest.no_of_days
     }
     return {
