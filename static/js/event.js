@@ -5,7 +5,7 @@ $(document).ready(function(){
 	console.log(id);
 
 		$.ajax({
-			url: "http://localhost:8080/event/2016/get/" + id,
+			url: "http://localhost:8080/api/event/2016/get/" + id,
 			method: "GET",
 			success:function(data){
 				console.log(data.event);

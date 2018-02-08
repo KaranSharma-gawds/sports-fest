@@ -22,8 +22,12 @@ def load_user(user_id):
 @login.route('/login', methods=['POST'])
 def user_login():
     user_name = request.data['user_name']
+<<<<<<< HEAD
     user = User.query.filter(username=user_name).first()
     if not user:
+=======
+    if not user_name:
+>>>>>>> front-end
         return {
             'status':'BAD REQUEST',
             'message':'USER DOES NOT EXIST'
@@ -76,3 +80,4 @@ def register():
         'status':'SUCCESS',
         'message':'SUCCESSFULLY REGISTERED'
     }, 200
+

@@ -30,7 +30,7 @@ def get_institutions():
     }, 200
 
 @institute.route('/add', methods=['POST'])
-@login_required
+# @login_required
 def add_institution():
     info = Institution(name = request.data['college_name'], short = request.data['college_short'])
     session.add(info)
