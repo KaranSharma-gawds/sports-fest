@@ -6,3 +6,4 @@ my_routes/__pycache__
 documents/
 flask-restful/
 .ropeproject/
+config.pyc

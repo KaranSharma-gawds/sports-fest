@@ -21,6 +21,7 @@ def add_event(year):
     end_time = datetime.datetime.strptime(request.data['end_time'], '%H:%M').time()
     venue = request.data['venue']
     info = Event(fest=year, name=name, day=day, start_time=start_time, end_time=end_time, venue=venue)
+    print
     session.add(info)
     session.commit()
     return {
