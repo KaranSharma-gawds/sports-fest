@@ -6,8 +6,8 @@ from . import institute
 
 session = DatabaseHandler.connect_to_database()
 
-# @login_required    #implement when login is completed
 @institute.route('/get', methods=['GET'])
+@login_required    #implement when login is completed
 def get_institutions():
     colleges = Institution.query.all()
     college_json_array = []
@@ -30,7 +30,7 @@ def get_institutions():
     }, 200
 
 @institute.route('/add', methods=['POST'])
-# @login_required
+@login_required
 def add_institution():
     info = Institution(name = request.data['college_name'], short = request.data['college_short'])
     session.add(info)

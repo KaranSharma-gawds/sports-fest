@@ -44,6 +44,11 @@ class User(DeclarativeBase, UserMixin):
         return self.username
     def check_password(self, password):
         return check_password_hash(self.pwhash, password)
+    def get_id(self):
+        try:
+            return self.username
+        except AttributeError:
+            raise NotImplementedError('No `id` attribute - override `get_id`')
 
 class Person(DeclarativeBase):
     __tablename__ = 'person'

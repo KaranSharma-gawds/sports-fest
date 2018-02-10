@@ -12,6 +12,7 @@ CORS(app)
 def run():
     initialise_routes(app)
     app.register_blueprint(sports)
+    app.config.update(SECRET_KEY='dilrubajanemangaanddekejachutmarwakeja')
     app.run(host=config.HOST, port=config.PORT, debug=True, threaded=False, processes=1)
 
 @app.route('/', methods=['GET'])

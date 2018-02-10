@@ -6,7 +6,8 @@ $.ajax({
 	success : function(data){
 		console.log(data);
 		for(var i = 0; i < data.array.length; i++){
-      		var x = "<div class='col-12 notification'><span>"+data.array[i]+"</span><a style='position:absolute; right:10px' class='btn btn-primary download-btn' href=`{{ url_for('static', filename='documents/'+data.array[i]) }}` role='button'>Download</a></div>";
+			var url = `/static/documents/${data.array[i]}`
+      		var x = "<div class='col-12 notification'><span>"+data.array[i]+"<span class='badge badge-secondary'>New</span></span><a style='position:absolute; right:10px' class='btn btn-primary download-btn' href='" + url + "'" + "role='button'>Download</a></div>";
       		// var y ="<div class='card card-body noti-card'> " +data[i].file_link +"</div>"
       	$("#notification_div").append(x);
       	

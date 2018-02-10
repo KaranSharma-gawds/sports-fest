@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_login import login_required
 sports = Blueprint('sports', __name__)
 @sports.route('/', methods=['GET'])
 def index():
@@ -17,18 +18,22 @@ def notifications():
     return render_template('notifications.html')
 
 @sports.route('/dashboard', methods=['GET'])
+@login_required
 def dashboard():
     return render_template('dashboard.html')
 
 @sports.route('/upload/image', methods=['GET'])
+@login_required
 def upload_image():
     return render_template('upload-file.html', filetype='photo', url='/api/upload/image/add')
 
 @sports.route('/upload/doc', methods=['GET'])
+@login_required
 def upload_doc():
     return render_template('upload-file.html', filetype='doc', url='/api/upload/doc/add')
 
 @sports.route('/person/add')
+@login_required
 def add_person():
     return render_template('add_person.html', filetype='photo', url='/api/people/add')
 

@@ -4,10 +4,10 @@ try:
     from urllib.parse import urlparse, urljoin
 except ImportError:
      from urlparse import urlparse, urljoin
-from flask import request, abort
+from flask import request, abort, redirect
 from models import User, Institution
 from connection import DatabaseHandler
-from flask_login import login_required
+from flask_login import login_required, logout_user, current_user, login_user
 
 session = DatabaseHandler.connect_to_database()
 
@@ -19,9 +19,12 @@ def is_safe_url(target):
 
 @login_manager.user_loader
 def load_user(user_id):
-    my_user = User.query.filter_by(username=user_id)
+    my_user = User.query.filter_by(username=user_id).first()
+    print('inside load user')
     if not my_user:
+        print('load user returning none')
         return None
+    print('load user returning'+str(my_user))
     return my_user
 
 @login.route('/login', methods=['POST'])
@@ -38,10 +41,13 @@ def user_login():
             'status':'ERROR',
             'message':'INVALID PASSWORD'
         }
+    login_user(user)
     user = load_user(user_name)
+    # print("printing user" + user)
     next = request.args.get('next')
     if not is_safe_url(next):
         return abort(400)
+    # return redirect('/dashboard', code=300)
     return {
         'status':'OK',
         'message':'SUCCESSFULLY LOGGED IN'
@@ -51,10 +57,11 @@ def user_login():
 @login_required
 def logout():
     logout_user()
-    return {
-        'status':'SUCCESS',
-        'message':'SUCCESSFULLY LOGGED OUT'
-    }, 200
+    return redirect('/signin')
+    # return {
+    #     'status':'OK',
+    #     'message':'SUCCESSFULLY LOGGED OUT'
+    # }, 200
 
 @login.route('/register', methods=['POST'])
 def register():

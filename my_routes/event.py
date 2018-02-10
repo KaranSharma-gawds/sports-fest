@@ -7,7 +7,7 @@ from . import events
 
 session = DatabaseHandler.connect_to_database()
 @events.route('/<int:year>/add', methods=['POST'])
-# @login_required
+@login_required
 def add_event(year):
     req_fest = Fest.query.filter_by(year=year).first()
     if not req_fest:

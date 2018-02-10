@@ -1,8 +1,46 @@
 $(document).ready(function() {
 	$('#fullpage').fullpage({
-    scrollOverflow:true
+    scrollOverflow: true
   });
 
+});
+
+
+$('.responsive').slick({
+  arrows: true,
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
 });
 
 
@@ -106,7 +144,7 @@ $(document).ready(function() {
 $(document).ready(function(){
 
   const Item = ({link,name}) =>
-    `<div class="col-3 col-md-2 event_card" onclick="location.href='${link}';" style="cursor:pointer; padding-top:30px">
+    `<div class="col-11 col-md-3 event_card " onclick="location.href='${link}';" style="cursor:pointer; padding-top:30px">
       
         <h3>${name}</h3>
       
