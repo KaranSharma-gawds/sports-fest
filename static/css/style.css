@@ -198,6 +198,9 @@ nav ul a:hover::after {
 }
 
 @media only screen and (max-width: 500px) {
+    body {
+        overflow-x: hidden !important;
+    }
     .responsive {
         margin-top: 0vh !important;
     }

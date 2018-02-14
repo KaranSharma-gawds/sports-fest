@@ -3,8 +3,9 @@ $(document).ready(function() {
 
 
     $('#fullpage').fullpage({
-        scrollOverflow: true,
+        // scrollOverflow: true,
         scrollingSpeed: 700,
+        responsiveWidth: 1100
     });
 
 

@@ -12,7 +12,7 @@ $(document).ready(function() {
             $("#event_name").append(data.event.name);
             $("#institute_name").append(data.event.venue);
             $("#time").append(data.event.start_time);
-            $("#date").append(data.event.date);
+            $("#date").append(data.event.day);
             $("#win1_name").append(data.win1);
             $("#win1_inst").append(data.win1_inst);
             $("#win2_name").append(data.win2);

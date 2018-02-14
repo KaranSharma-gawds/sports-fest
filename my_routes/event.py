@@ -16,7 +16,8 @@ def add_event(year):
             'message':'NO SUCH FEST'
         }, 201
     name = request.data['name']
-    day = request.data['day']
+    # day = request.data['day']
+    day = datetime.datetime.strptime(request.data['day'], '%Y-%m-%d').date()
     start_time = datetime.datetime.strptime(request.data['start_time'], '%H:%M').time()
     end_time = datetime.datetime.strptime(request.data['end_time'], '%H:%M').time()
     venue = request.data['venue']
@@ -66,6 +67,7 @@ def get_event(year, id):
         'venue':event.venue,
         'id':event.id
     }
+    print(str(event.day))
     return {
         'status':'OK',
         'message':'SUCCESS',

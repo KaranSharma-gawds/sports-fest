@@ -40,7 +40,7 @@ def upload_image():
 def upload_doc():
     return render_template('upload-file.html', filetype='doc', url='/api/upload/doc/add')
 
-@sports.route('/person/add')
+@sports.route('/person/add', methods=['GET'])
 @login_required
 def add_person():
     return render_template('add_person.html', filetype='photo', url='/api/people/add')

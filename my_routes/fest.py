@@ -28,12 +28,12 @@ def get_all_fests():
     }, 200
 
 @sports_fest.route('/add', methods=['POST'])
-@login_required
+# @login_required
 def add_sports_fest():
     year = request.data['year']
     # host = request.data['host']
-    no_of_days = request.data['no_of_days']
-    info = Fest(year=year, host=host, no_of_days=no_of_days)
+    # no_of_days = request.data['no_of_days']
+    info = Fest(year=year)
     session.add(info)
     session.commit() 
     return {

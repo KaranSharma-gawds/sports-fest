@@ -64,6 +64,7 @@ def logout():
     # }, 200
 
 @login.route('/register', methods=['POST'])
+@login_required
 def register():
     user_name = request.data['user_name']
     password = request.data['password']
