@@ -42,7 +42,7 @@
     font-family: 'Rubik', sans-serif;
     color: #1d1d1d;
     text-align: center;
-    font-size: 6vw;
+    font-size: 2rem;
     padding-top: 6vh;
 }
 
@@ -70,7 +70,7 @@
 
 @media only screen and (max-width: 800px) {
     .container-3 {
-        font-size: 12vw;
+        /* font-size: 12vw; */
         margin-top: -140vh;
     }
 }

@@ -9,6 +9,14 @@ def index():
 def signin():
     return render_template('login.html')
 
+@sports.route('/organisers', methods=['GET'])
+def organisers():
+    return render_template('organisers.html')
+
+@sports.route('/gallery', methods=['GET'])
+def gallery():
+    return render_template('gallery.html')
+
 @sports.route('/event', methods=['GET'])
 def event():
     return render_template('event.html')
