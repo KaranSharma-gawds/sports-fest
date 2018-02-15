@@ -72,7 +72,7 @@ def load_images(event_id):
     image_records = UploadedFile.query.filter_by(event_id=event_id).all()
     image_url_array = []
     for image_record in image_records:
-        image_url_array.append(image_record.file_name)
+        image_url_array.append('/static/photos/'+image_record.file_name)
     return {
         'status':'OK',
         'message':'SUCCESS',

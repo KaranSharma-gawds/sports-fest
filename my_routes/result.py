@@ -11,6 +11,13 @@ session = DatabaseHandler.connect_to_database()
 def get_result(event_id):
     # event = request.data['event']
     result = Result.query.filter_by(event_id=event_id).first()
+    if not result:
+        print('------------------no result uploaded yet---------------')
+        return {
+            'status':'OK',
+            'message':'SUCCESS',
+            'result':None
+        }
     result_json = {
         'event_id':result.event_id,
         'first_name':result.first_name,

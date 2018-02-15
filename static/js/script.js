@@ -4,13 +4,13 @@ $(document).ready(function() {
 
     $('#fullpage').fullpage({
         // scrollOverflow: true,
-        scrollingSpeed: 700,
+        // scrollingSpeed: 700,
         responsiveWidth: 1100
     });
 
 
     function Item(link, name) {
-        var obj = '<div class="col-12 col-md-4"><div class="event-card-2" onclick=location.href="' + link + '"><span>' + name + '</span></div></div>';
+        var obj = '<div class="col-12 col-md-4"><div class="event-card-2" onclick=location.href="' + link + '"><span><p>' + name + '</p></span></div></div>';
         obj = $.parseHTML(obj);
         return obj[0];
     }

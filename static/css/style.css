@@ -150,7 +150,7 @@ nav ul a:hover::after {
 
 .schedule_div {
     transform: rotate(90deg);
-    padding: 4vw;
+    padding-left: 4vw;
 }
 
 .cards_div {

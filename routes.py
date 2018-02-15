@@ -45,3 +45,6 @@ def upload_doc():
 def add_person():
     return render_template('add_person.html', filetype='photo', url='/api/people/add')
 
+@sports.route('/something', methods=['GET'])
+def something():
+    return render_template('images.html')
