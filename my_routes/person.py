@@ -60,10 +60,7 @@ def add_person():
                         email_id=email_id, contact_no=contact_no, image_url=filename)
         session.add(info)
         session.commit()
-        return {
-            'status':'OK',
-            'message':'SUCCESSFULLY ADDED PERSON'
-        }
+        return redirect('/dashboard')
     return {
         'status':'ERROR',
         'message':'UNPREDICTED ERROR OCCURRED'

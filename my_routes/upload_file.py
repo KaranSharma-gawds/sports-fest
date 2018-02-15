@@ -23,6 +23,7 @@ def upload_file(file, file_type):
             file.save(os.path.join(config.PHOTOS_UPLOAD_FOLDER, filename))
         else:
             file.save(os.path.join(config.DOCUMENTS_UPLOAD_FOLDER, filename))
+        # return redirect('/dashboard')
         return {
             'status':'OK',
             'message':'FILE SAVED',

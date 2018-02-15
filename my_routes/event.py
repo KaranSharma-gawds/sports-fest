@@ -25,10 +25,11 @@ def add_event(year):
     print
     session.add(info)
     session.commit()
-    return {
-        'status':'OK',
-        'message':'SUCCESSFULLY ADDED EVENT',
-    }, 200
+    return redirect('/dashboard')
+    # return {
+    #     'status':'OK',
+    #     'message':'SUCCESSFULLY ADDED EVENT',
+    # }, 200
 
 @events.route('/<int:year>/get', methods=['GET'])
 def get_events(year):

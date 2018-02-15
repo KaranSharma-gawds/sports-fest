@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
 
-
     $('#fullpage').fullpage({
         // scrollOverflow: true,
         // scrollingSpeed: 700,
-        responsiveWidth: 1100
+        responsiveWidth: 1100,
+        anchors: ['firstPage', 'secondPage', 'thirdPage']
     });
 
 
