@@ -13,9 +13,9 @@ def get_institutions():
     college_json_array = []
     for college in colleges:
         user_json = {
-            'collegename':college.name,
-            'college short':college.short,
-            'college id':college.id
+            'college_name':college.name,
+            'college_short':college.short,
+            'college_id':college.id
         }
         college_json_array.append(user_json)
     if not college_json_array:

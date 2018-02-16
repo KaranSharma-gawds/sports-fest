@@ -301,6 +301,8 @@ nav ul a:hover::after {
     }
     .gawds-link {
         position: relative !important;
+        margin-right: 10px;
+        margin-top: 3px;
     }
 }
 

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap-grid.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.css" > -->
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/jquery.fullpage.min.css"> -->
+    <link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css">
+
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/slick.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/animation.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/slick-theme.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.8.0/slick.css"/> -->
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/style.css"> -->
+    <!-- <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> -->
+
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/cardslider.css"> -->
+
+    <!-- <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script> -->
+
+    <title>Inter NIT Sports | NIT Kurukshetra</title>
+</head>
+
+<body>
+    <div class="container">
+        <form action={{url}} method="POST">
+            <div class="form-group">
+                <label for="event">select event</label>
+                <select class="form-control" name="event" id="event">
+                      
+                      
+                    </select>
+            </div>
+            <div class="form-group row">
+                <label for="first_name" class="col-2 col-form-label">Name Of 1st position</label>
+                <div class="col-10">
+                    <input class="form-control" type="text" value="" name="first_name" id="first_name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="first_institution" class="col-2 col-form-label">Institute Of 1st Position</label>
+                <select class="form-control" name="institute" id="inst1">
+                      
+                      
+                    </select>
+            </div>
+            <div class="form-group row">
+                <label for="second_name" class="col-2 col-form-label">Name Of 2nd position</label>
+                <div class="col-10">
+                    <input class="form-control" type="text" value="" name="second_name" id="second_name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="second_institution" class="col-2 col-form-label">Institute Of 1st Position</label>
+                <select class="form-control institution" name="event" id="inst2">
+                      
+                      
+                    </select>
+            </div>
+            <div class="form-group row">
+                <label for="third_name" class="col-2 col-form-label">Name Of 3rd position</label>
+                <div class="col-10">
+                    <input class="form-control" type="text" value="" name="third_name" id="third_name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="third_institution" class="col-2 col-form-label">Institute Of 1st Position</label>
+                <select class="form-control institution" name="event" id="inst3">
+                      
+                      
+                    </select>
+            </div>
+
+            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+
+    <script src="../static/js/jquery-3.2.1.min.js "></script>
+    <script src="../static/js/bootstrap.js "></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js " integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=" anonymous "></script> -->
+    <!-- <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.js "></script> -->
+    <!-- <script type="text/javascript " src="../static/js/scrolloverflow.min.js "></script> -->
+    <!-- <script type="text/javascript " src="../static/js/jquery.fullpage.min.js "></script> -->
+    <!-- <script type="text/javascript " src="https://cdn.jsdelivr.net/jquery.slick/1.8.0/slick.min.js "></script> -->
+    <!-- <script type="text/javascript " src="../static/js/slick.min.js "></script> -->
+    <!-- <script type="text/javascript " src="../static/js/script.js "></script> -->
+    <script>
+        function Item(id, name) {
+            // var obj = '<div class="col-12 col-md-4"><div class="event-card-2" onclick=location.href="' + link + '"><span><p>' + name + '</p></span></div></div>';
+            var obj = '<option vlaue="' + id + '">' + name + '</option>'
+            obj = $.parseHTML(obj);
+            return obj[0];
+        }
+        $.ajax({
+            dataType: "json",
+            // url: "https://5a5b96f44611170012fe752c.mockapi.io/api/event",
+            url: "http://localhost:8080/api/event/2016/get",
+
+            method: "GET",
+            success: function(data) {
+                console.log("printing data:", data.array[0].name);
+
+                var templateData = [];
+                $.each(data.array, function(k, v) {
+                    var obj = {};
+                    //storing link for a spcific event in link variable
+                    obj.id = v.id;
+                    obj.name = v.name;
+                    // console.log(v.name); // console.log("k.start_name");
+                    templateData.push(obj);
+
+                });
+                templateData.forEach(function(k) {
+                    $('#event').append(Item(k.id, k.name));
+                });
+
+            }
+        });
+
+        function Item(id, name) {
+            // var obj = '<div class="col-12 col-md-4"><div class="event-card-2" onclick=location.href="' + link + '"><span><p>' + name + '</p></span></div></div>';
+            var obj = '<option vlaue="' + id + '">' + name + '</option>'
+            obj = $.parseHTML(obj);
+            return obj[0];
+        }
+        $.ajax({
+            dataType: "json",
+            // url: "https://5a5b96f44611170012fe752c.mockapi.io/api/event",
+            url: "http://localhost:8080/api/institute/get",
+
+            method: "GET",
+            success: function(data) {
+                console.log("printing data:", data.array[0].college_id);
+
+                var templateData = [];
+                $.each(data.array, function(k, v) {
+                    var obj = {};
+                    //storing link for a spcific event in link variable
+                    obj.id = v.college_id;
+                    obj.name = v.college_name;
+                    // console.log(v.name); // console.log("k.start_name");
+                    templateData.push(obj);
+
+                });
+                templateData.forEach(function(k) {
+                    console.log(k);
+                    $('#inst1').append(Item(k.id, k.name));
+                    $('#inst2').append(Item(k.id, k.name));
+                    $('#inst3').append(Item(k.id, k.name));
+                });
+
+            }
+        });
+    </script>
+</body>
+
+</html>

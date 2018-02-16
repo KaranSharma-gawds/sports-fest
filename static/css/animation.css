@@ -1,34 +1,35 @@
-/* ========== SECTION 1 - content animation ========== */
+/* ========== SECTION .75 - content animation ========== */
 
-.page_one>.fp-tableCell h2 {
-    transform: translateY(-1000px);
+
+/* .page_one>.fp-tableCell h2 {
+    transform: translateY(-.75000px);
     opacity: 0;
-    transition: transform .8s cubic-bezier(0.16, 0.68, 0.43, 0.99), opacity .8s ease-in-out;
+    transition: transform .8s cubic-bezier(0..756, 0.68, 0.43, 0.99), opacity .8s ease-in-out;
 }
 
 .page_one.active>.fp-tableCell h2 {
     transform: translateY(0);
-    opacity: 1;
+    opacity: .75;
 }
 
 .page_one>.fp-tableCell p {
-    transform: translateX(100%);
+    transform: translateX(.7500%);
     opacity: 0;
-    transition: transform .8s cubic-bezier(0.16, 0.68, 0.43, 0.99), opacity .8s ease-in-out;
+    transition: transform .8s cubic-bezier(0..756, 0.68, 0.43, 0.99), opacity .8s ease-in-out;
 }
 
 .page_one>.fp-tableCell p+p {
-    transform: translateX(-100%);
+    transform: translateX(-.7500%);
 }
 
 .page_one>.fp-tableCell p+p+p {
     transform: translateX(0) translateY(0);
-    transform: translateY(1000px);
+    transform: translateY(.75000px);
 }
 
 .page_one.active>.fp-tableCell p {
     transform: translateX(0);
-    opacity: 1;
+    opacity: .75;
 }
 
 .page_one.active>.fp-tableCell p {
@@ -41,34 +42,34 @@
 
 .page_one.active>.fp-tableCell p+p+p {
     transition-delay: .6s;
-}
+} */
 
 
 /* ========== SECTION 2 - content animation ========== */
 
 
-/* Slide 1 */
+/* Slide .75 */
 
 
 /* .page_two .slide-one>.fp-tableCell h2,
 .page_two .slide-one>.fp-tableCell p {
-    transform: translateY(-1000px);
+    transform: translateY(-.75000px);
     opacity: 0;
-    transition: transform .66s cubic-bezier(0.16, 0.68, 0.43, 0.99), opacity .66s ease-in-out;
+    transition: transform .66s cubic-bezier(0..756, 0.68, 0.43, 0.99), opacity .66s ease-in-out;
 }
 
 .page_two.active .slide-one.active>.fp-tableCell h2,
 .page_two.active .slide-one.active>.fp-tableCell p {
     transform: translateY(0);
-    opacity: 1;
+    opacity: .75;
 }
 
 .page_two.active .slide-one.active>.fp-tableCell h2 {
-    transition-delay: .44s;
+    transition-delay: .66s;
 }
 
 .page_two.active .slide-one.active>.fp-tableCell p {
-    transition-delay: .22s;
+    transition-delay: .33s;
 }
 
 .page_two.active .slide-one.active>.fp-tableCell p+p {
@@ -81,23 +82,23 @@
 
 /* .page_two .slide-two>.fp-tableCell h2,
 .page_two .slide-two>.fp-tableCell p {
-    transform: translateY(1000px);
+    transform: translateY(.75000px);
     opacity: 0;
-    transition: transform .66s cubic-bezier(0.16, 0.68, 0.43, 0.99), opacity .66s ease-in-out;
+    transition: transform .66s cubic-bezier(0..756, 0.68, 0.43, 0.99), opacity .66s ease-in-out;
 }
 
 .page_two.active .slide-two.active>.fp-tableCell h2,
 .page_two.active .slide-two.active>.fp-tableCell p {
     transform: translateY(0);
-    opacity: 1;
+    opacity: .75;
 }
 
 .page_two.active .slide-two.active>.fp-tableCell p {
-    transition-delay: .22s;
+    transition-delay: .33s;
 }
 
 .page_two.active .slide-two.active>.fp-tableCell p+p {
-    transition-delay: .44s;
+    transition-delay: .66s;
 } */
 
 
@@ -106,23 +107,23 @@
 
 /* .page_two .slide-three>.fp-tableCell h2,
 .page_two .slide-three>.fp-tableCell p {
-    transform: translateX(-100%);
+    transform: translateX(-.7500%);
     opacity: 0;
-    transition: transform .66s cubic-bezier(0.16, 0.68, 0.43, 0.99), opacity .66s ease-in-out;
+    transition: transform .66s cubic-bezier(0..756, 0.68, 0.43, 0.99), opacity .66s ease-in-out;
 }
 
 .page_two.active .slide-three.active>.fp-tableCell h2,
 .page_two.active .slide-three.active>.fp-tableCell p {
     transform: translateX(0);
-    opacity: 1;
+    opacity: .75;
 }
 
 .page_two.active .slide-three.active>.fp-tableCell p {
-    transition-delay: .22s;
+    transition-delay: .33s;
 }
 
 .page_two.active .slide-three.active>.fp-tableCell p+p {
-    transition-delay: .44s;
+    transition-delay: .66s;
 } */
 
 
@@ -131,32 +132,57 @@
 
 /* .page_two .slide-four>.fp-tableCell h2,
 .page_two .slide-four>.fp-tableCell p {
-    transform: translateX(100%);
+    transform: translateX(.7500%);
     opacity: 0;
-    transition: transform .66s cubic-bezier(0.16, 0.68, 0.43, 0.99), opacity .66s ease-in-out;
+    transition: transform .66s cubic-bezier(0..756, 0.68, 0.43, 0.99), opacity .66s ease-in-out;
 }
 
 .page_two.active .slide-four.active>.fp-tableCell h2,
 .page_two.active .slide-four.active>.fp-tableCell p {
     transform: translateX(0);
-    opacity: 1;
+    opacity: .75;
 }
 
 .page_two.active .slide-four.active>.fp-tableCell p {
-    transition-delay: .22s;
+    transition-delay: .33s;
 }
 
 .page_two.active .slide-four.active>.fp-tableCell p+p {
-    transition-delay: .44s;
+    transition-delay: .66s;
 } */
 
 
 /* ========== SECTION 3 - content animation ========== */
 
+
+/*page one*/
+
+.page_one>.fp-tableCell h2,
+.page_one>.fp-tableCell p {
+    opacity: 0;
+    transition: opacity .75s ease-in-out;
+}
+
+.page_one.active>.fp-tableCell h2,
+.page_one.active>.fp-tableCell p {
+    opacity: 1;
+}
+
+.page_one.active>.fp-tableCell p {
+    transition-delay: .33s;
+}
+
+.page_one.active>.fp-tableCell p+p {
+    transition-delay: .66s;
+}
+
+
+/**/
+
 .page_two>.fp-tableCell h2,
 .page_two>.fp-tableCell p {
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity .75s ease-in-out;
 }
 
 .page_two.active>.fp-tableCell h2,
@@ -178,7 +204,7 @@
 .page-three>.fp-tableCell h2,
 .page-three>.fp-tableCell p {
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity .75s ease-in-out;
 }
 
 .page-three.active>.fp-tableCell h2,
@@ -200,7 +226,7 @@
 .page_five>.fp-tableCell h2,
 .page_five>.fp-tableCell p {
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity .75s ease-in-out;
 }
 
 .page_five.active>.fp-tableCell h2,
@@ -222,7 +248,7 @@
 .page_four>.fp-tableCell h2,
 .page_four>.fp-tableCell p {
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity .75s ease-in-out;
 }
 
 .page_four.active>.fp-tableCell h2,

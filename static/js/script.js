@@ -5,7 +5,7 @@ $(document).ready(function() {
         // scrollOverflow: true,
         // scrollingSpeed: 700,
         responsiveWidth: 1100,
-        anchors: ['firstPage', 'secondPage', 'thirdPage']
+        anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'fifthPage']
     });
 
 
