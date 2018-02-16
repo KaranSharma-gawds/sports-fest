@@ -6,7 +6,7 @@ $(document).ready(function() {
         var link = ob.link;
         console.log(link);
         // var obj = '<div class="col-12 col-md-4"><div class="event-card-2" onclick=location.href="' + link + '"><span><p>' + name + '</p></span></div></div>';
-        var obj = '<a href=' + link + '><div class="thumbnail"><img src=' + link + ' /></div></a>'
+        var obj = '<a href=' + link + '><div class="cell"><img class="responsive-image" src=' + link + ' /></div></a>'
         obj = $.parseHTML(obj);
         return obj[0];
     }
@@ -33,7 +33,11 @@ $(document).ready(function() {
                 $('#lightgallery').append(Item(k));
                 console.log("k is :" + k);
             });
-            $("#lightgallery").lightGallery();
+            $("#lightgallery").lightGallery({
+                thumbnail: true,
+                mode: 'lg-fade',
+                cssEasing: 'cubic-bezier(0.25, 0, 0.25, 1)'
+            });
 
         }
     });
