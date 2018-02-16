@@ -1,5 +1,5 @@
 import datetime as datetime
-from flask import request
+from flask import request, redirect
 from flask_login import login_required
 from models import Event, Fest
 from connection import DatabaseHandler

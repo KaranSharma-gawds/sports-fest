@@ -22,13 +22,14 @@ def upload_image():
     if obj['status'] == 'OK':
         print(obj['message'])
         filename = obj['filename']
-        info = UploadedFile(filename=filename, event_id=request.data['event_id'])
+        info = UploadedFile(filename=filename, file_type='IMAGE')
         session.add(info)
         session.commit()
-        return {
-            'status':'OK',
-            'message':'SUCCESSFULLY ADDED IMAGE'
-        }, 200
+        return redirect('/dashboard')
+        # return {
+        #     'status':'OK',
+        #     'message':'SUCCESSFULLY ADDED IMAGE'
+        # }, 200
     return {
         'status':'ERROR',
         'message':'UNPREDICTED ERROR OCCURRED'
@@ -49,27 +50,19 @@ def upload_doc():
     if obj['status'] == 'OK':
         print(obj['message'])
         filename = obj['filename']
-        info = UploadedFile(filename=filename, event_id=request.data['event_id'])
+        info = UploadedFile(filename=filename, file_type='DOC')
         session.add(info)
         session.commit()
-        return {
-            'status':'OK',
-            'message':'SUCCESSFULLY ADDED DOC'
-        }, 200
+        return redirect('/dashboard')
     return {
         'status':'ERROR',
         'message':'UNPREDICTED ERROR OCCURRED'
     }
 
-@upload_route.route('/image/get/<int:event_id>', methods=['GET'])
-def load_images(event_id):
+@upload_route.route('/image/get', methods=['GET'])
+def load_images():
     # event_id = request.data['event_id']
-    if not Event.query.filter_by(id=event_id).first():
-        return {
-            'status':'BAD REQUEST',
-            'message':'EVENT DOES NOT EXIST'
-        }
-    image_records = UploadedFile.query.filter_by(event_id=event_id).all()
+    image_records = UploadedFile.query.filter_by(file_type='IMAGE').all()
     image_url_array = []
     for image_record in image_records:
         image_url_array.append('/static/photos/'+image_record.file_name)
@@ -79,28 +72,15 @@ def load_images(event_id):
         'array':image_url_array
     }, 200
 
-@upload_route.route('/doc/get/<int:event_id>', methods=['GET'])
-def load_docs(event_id):
-    # event_id = request.data['event_id']
-    if not Event.query.filter_by(id=event_id).first():
-        return {
-            'status':'BAD REQUEST',
-            'message':'EVENT DOES NOT EXIST'
-        }
-    doc_records = UploadedFile.query.filter_by(event_id=event_id).all()
-    doc_url_array = []
-    for doc_record in doc_records:
-        doc_url_array.append(doc_record.file_name)
-    return {
-        'status':'OK',
-        'message':'SUCCESS',
-        'array':doc_url_array
-    }, 200
-
 @upload_route.route('/doc/get', methods=['GET'])
-def load_all_docs():
+def load_docs():
     # event_id = request.data['event_id']
-    doc_records = UploadedFile.query.all()  #gives for all years TODO: change this somehow to handle this
+    # if not Event.query.filter_by(id=event_id).first():
+    #     return {
+    #         'status':'BAD REQUEST',
+    #         'message':'EVENT DOES NOT EXIST'
+    #     }
+    doc_records = UploadedFile.query.filter_by(file_type='DOC').all()
     doc_url_array = []
     for doc_record in doc_records:
         doc_url_array.append(doc_record.file_name)
@@ -109,4 +89,3 @@ def load_all_docs():
         'message':'SUCCESS',
         'array':doc_url_array
     }, 200
-

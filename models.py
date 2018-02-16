@@ -127,12 +127,14 @@ class UploadedFile(DeclarativeBase):
     __tablename__ = 'uploaded_file'
     file_id = Column(Integer, primary_key=True, autoincrement=True)
     file_name = Column(String)
-    event_id = Column(String(200), ForeignKey('event.id'))
-    def __init__(self, filename=None, event_id=None):
-        self.event_id = event_id
+    file_type = Column(String)
+    # event_id = Column(String(200), ForeignKey('event.id'))
+    def __init__(self, filename=None, file_type=None):
+        # self.event_id = event_id
+        self.file_type = file_type
         self.file_name = filename
     def __repr__(self):
-        return self.photo_id
+        return self.file_id
 
 #activity-type(Enum)
 class ActivityLog(DeclarativeBase):

@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, redirect
 from flask_login import login_required
 from models import Institution
 from connection import DatabaseHandler
@@ -7,7 +7,7 @@ from . import institute
 session = DatabaseHandler.connect_to_database()
 
 @institute.route('/get', methods=['GET'])
-@login_required    #implement when login is completed
+# @login_required
 def get_institutions():
     colleges = Institution.query.all()
     college_json_array = []

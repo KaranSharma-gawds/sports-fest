@@ -33,7 +33,7 @@
             <div class="form-group row">
                 <label for="event" class="col-2 col-form-label">select event</label>
                 <div class="col-10">
-                    <select class="form-control" name="event" id="event">
+                    <select class="form-control" name="event" id="event-dropdown">
                       
                       
                     </select>
@@ -48,7 +48,7 @@
             <div class="form-group row">
                 <label for="first_institution" class="col-2 col-form-label">Institute Of 1st Position</label>
                 <div class="col-10">
-                    <select class="form-control" name="institute" id="inst1">
+                    <select class="form-control" name="first_institution" id="inst1">
                       
                       
                             </select>
@@ -64,7 +64,7 @@
             <div class="form-group row">
                 <label for="second_institution" class="col-2 col-form-label">Institute Of 2nd Position</label>
                 <div class="col-10">
-                    <select class="form-control institution" name="event" id="inst2">
+                    <select class="form-control institution" name="second_institution" id="inst2">
                       
                       
                     </select>
@@ -79,7 +79,7 @@
             <div class="form-group row">
                 <label for="third_institution" class="col-2 col-form-label">Institute Of 3rd Position</label>
                 <div class="col-10">
-                    <select class="form-control institution" name="event" id="inst3">
+                    <select class="form-control institution" name="third_institution" id="inst3">
                       
                       
                     </select>
@@ -105,7 +105,7 @@
     <script>
         function Item(id, name) {
             // var obj = '<div class="col-12 col-md-4"><div class="event-card-2" onclick=location.href="' + link + '"><span><p>' + name + '</p></span></div></div>';
-            var obj = '<option vlaue="' + id + '">' + name + '</option>'
+            var obj = '<option value="' + id + '">' + name + '</option>'
             obj = $.parseHTML(obj);
             return obj[0];
         }
@@ -129,7 +129,7 @@
 
                 });
                 templateData.forEach(function(k) {
-                    $('#event').append(Item(k.id, k.name));
+                    $('#event-dropdown').append(Item(k.id, k.name));
                 });
 
             }
@@ -137,7 +137,7 @@
 
         function Item(id, name) {
             // var obj = '<div class="col-12 col-md-4"><div class="event-card-2" onclick=location.href="' + link + '"><span><p>' + name + '</p></span></div></div>';
-            var obj = '<option vlaue="' + id + '">' + name + '</option>'
+            var obj = '<option value="' + id + '">' + name + '</option>'
             obj = $.parseHTML(obj);
             return obj[0];
         }

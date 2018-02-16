@@ -85,8 +85,9 @@ def register():
     info = User(username=user_name, institution=institution,password=password)
     session.add(info)
     session.commit()
-    return {
-        'status':'SUCCESS',
-        'message':'SUCCESSFULLY REGISTERED'
-    }, 200
+    return redirect('/dashboard')
+    # return {
+    #     'status':'SUCCESS',
+    #     'message':'SUCCESSFULLY REGISTERED'
+    # }, 200
 

@@ -1,5 +1,5 @@
 import datetime as datetime
-from flask import request
+from flask import request, redirect
 from flask_login import login_required
 from models import Event, Fest, Result, Institution
 from connection import DatabaseHandler
@@ -47,6 +47,7 @@ def add_result():
     second_institution = request.data['second_institution']
     third_name = request.data['third_name']
     third_institution = request.data['third_institution']
+    print('event:'+event+'firstname:'+first_name+'first_institution:'+first_institution+'-----------------------------------------------')
     if not Event.query.filter_by(id=event).first():
         return {
             'status':'BAD REQUEST',
@@ -57,7 +58,8 @@ def add_result():
                     third_institution=third_institution)
     session.add(info)
     session.commit()
-    return {
-        'status':'OK',
-        'message':'SUCCESSFULLY ADDED RESULT'
-    }, 200
+    return redirect('/dashboard')
+    # return {
+    #     'status':'OK',
+    #     'message':'SUCCESSFULLY ADDED RESULT'
+    # }, 200
