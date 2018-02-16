@@ -38,7 +38,7 @@ def get_result(event_id):
     }, 200
 
 @event_result.route('/add', methods=['POST'])
-# @login_required
+@login_required
 def add_result():
     event = request.data['event']
     first_name = request.data['first_name']

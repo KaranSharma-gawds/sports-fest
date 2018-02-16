@@ -35,10 +35,7 @@ def add_institution():
     info = Institution(name = request.data['college_name'], short = request.data['college_short'])
     session.add(info)
     session.commit()
-    return {
-        'status':'OK',
-        'message':'SUCCESS',
-    }, 200
+    return redirect('/dashboard')
 
 @institute.route('/get/<int:id>', methods=['GET'])
 def get_institution(id):

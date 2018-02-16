@@ -28,14 +28,16 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="margin:40px">
         <form action={{url}} method="POST">
-            <div class="form-group">
-                <label for="event">select event</label>
-                <select class="form-control" name="event" id="event">
+            <div class="form-group row">
+                <label for="event" class="col-2 col-form-label">select event</label>
+                <div class="col-10">
+                    <select class="form-control" name="event" id="event">
                       
                       
                     </select>
+                </div>
             </div>
             <div class="form-group row">
                 <label for="first_name" class="col-2 col-form-label">Name Of 1st position</label>
@@ -45,10 +47,13 @@
             </div>
             <div class="form-group row">
                 <label for="first_institution" class="col-2 col-form-label">Institute Of 1st Position</label>
-                <select class="form-control" name="institute" id="inst1">
+                <div class="col-10">
+                    <select class="form-control" name="institute" id="inst1">
                       
                       
-                    </select>
+                            </select>
+                </div>
+
             </div>
             <div class="form-group row">
                 <label for="second_name" class="col-2 col-form-label">Name Of 2nd position</label>
@@ -57,11 +62,13 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="second_institution" class="col-2 col-form-label">Institute Of 1st Position</label>
-                <select class="form-control institution" name="event" id="inst2">
+                <label for="second_institution" class="col-2 col-form-label">Institute Of 2nd Position</label>
+                <div class="col-10">
+                    <select class="form-control institution" name="event" id="inst2">
                       
                       
                     </select>
+                </div>
             </div>
             <div class="form-group row">
                 <label for="third_name" class="col-2 col-form-label">Name Of 3rd position</label>
@@ -70,11 +77,13 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="third_institution" class="col-2 col-form-label">Institute Of 1st Position</label>
-                <select class="form-control institution" name="event" id="inst3">
+                <label for="third_institution" class="col-2 col-form-label">Institute Of 3rd Position</label>
+                <div class="col-10">
+                    <select class="form-control institution" name="event" id="inst3">
                       
                       
                     </select>
+                </div>
             </div>
 
             <button type="submit" name="submit" class="btn btn-primary">Submit</button>

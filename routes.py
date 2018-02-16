@@ -46,9 +46,14 @@ def add_person():
     return render_template('add_person.html', filetype='photo', url='/api/people/add')
 
 @sports.route('/result/add', methods=['GET'])
-# @login_required
+@login_required
 def add_result():
     return render_template('resultupload.html', filetype='photo', url='/api/result/add')
+
+@sports.route('/institute/add', methods=['GET'])
+@login_required
+def add_institute():
+    return render_template('addinsti.html', filetype='photo', url='/api/institute/add')
 
 @sports.route('/something', methods=['GET'])
 def something():
