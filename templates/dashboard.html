@@ -44,9 +44,14 @@
                         <div class="form-group">
                             <label class="control-label col-5" for="">DAY</label>
                             <div class="col-9">
-                                <input type="date" name="day" class="form-control" id="day" placeholder="Enter Day">
+                                <input type="date" id="datetimepicker4" name="day" class="form-control" placeholder="Enter Day">
                             </div>
                         </div>
+                        <!-- <div class='input-group date' id='datetimepicker4'>
+                            <input type='text' name="day" class="form-control" />
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                            </span>
+                        </div> -->
                         <div class="form-group">
                             <label class="control-label col-5" for="">START TIME</label>
                             <div class="col-9">
@@ -152,6 +157,9 @@
             <div class="col-6 col-md-3" style="margin-bottom:15px">
                 <a class="btn btn-primary" href="/institute/add">CREATE COLLEGE</a>
             </div>
+            <div class="col-6 col-md-3" style="margin-bottom:15px">
+                <a class="btn btn-primary" href="/upload/image">upload image</a>
+            </div>
         </div>
     </div>
 
@@ -180,6 +188,14 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script> -->
     <script src="../static/js/bootstrap.js"></script>
+    <script>
+        $(function() {
+            // Bootstrap DateTimePicker v4
+            $('#datetimepicker4').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+        });
+    </script>
 </body>
 
 </html>

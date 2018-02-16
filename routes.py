@@ -33,7 +33,7 @@ def dashboard():
 @sports.route('/upload/image', methods=['GET'])
 @login_required
 def upload_image():
-    return render_template('upload-file.html', filetype='photo', url='/api/upload/image/add')
+    return render_template('upload-image.html', filetype='photo', url='/api/upload/image/add')
 
 @sports.route('/upload/doc', methods=['GET'])
 @login_required
