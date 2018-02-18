@@ -102,10 +102,12 @@ class Day(DeclarativeBase):
     name = Column(String)
     result_pdf = Column(String)
     schedule_pdf = Column(String)
-    def __init__(self, name=None, result_pdf=None, schedule_pdf=None):
+    event_id = Column(Integer, ForeignKey('event.id'))
+    def __init__(self, name=None, event_id=None, result_pdf=None, schedule_pdf=None):
         self.name = name
         self.result_pdf = result_pdf
-        self.schedule_pdf=schedule_pdf
+        self.schedule_pdf = schedule_pdf
+        self.event_id = event_id
     def __repr__(self):
         return self.id
 

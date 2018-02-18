@@ -39,7 +39,7 @@ def get_day_by_id(day_id):
         'status':'OK',
         'message':'SUCCESSFULLY RECIEVED DAY INFORMATION',
         'result_pdf':day.result_pdf,
-        'fixture_pdf':day.fixture_pdf,
+        'fixture_pdf':day.schedule_pdf,
         'name':day.name,
         'id':day.id
     }
@@ -48,7 +48,7 @@ def get_day_by_id(day_id):
 # @login_required
 def add_blank_day(event_id):
     name = request.data['name']
-    info = Event(event_id=event_id, name=name)
+    info = Day(event_id=event_id, name=name, result_pdf=None, schedule_pdf=None)
     session.add(info)
     session.commit()
     # return redirect('/dashboard')

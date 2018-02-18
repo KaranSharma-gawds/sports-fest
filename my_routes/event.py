@@ -56,7 +56,7 @@ def get_event(year, id):
         'name':event.name,
         'id':event.id
     }
-    print(str(event.day))
+    # print(str(event.day))
     return {
         'status':'OK',
         'message':'SUCCESS',

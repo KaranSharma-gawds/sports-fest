@@ -35,7 +35,7 @@ def get_people():
     }, 200
 
 @people.route('/add', methods=['POST'])
-@login_required
+# @login_required
 def add_person():
     if 'photo' not in request.files:
         # flash('no photo part in request')

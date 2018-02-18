@@ -64,7 +64,7 @@ def logout():
     # }, 200
 
 @login.route('/register', methods=['POST'])
-@login_required
+# @login_required
 def register():
     user_name = request.data['user_name']
     password = request.data['password']
@@ -91,3 +91,12 @@ def register():
     #     'message':'SUCCESSFULLY REGISTERED'
     # }, 200
 
+@login.route('/', methods=['GET'])
+def some():
+    user_result = User.query.all()
+    users = []
+    for each_user in user_result:
+        users.append(each_user.username)
+    return {
+        'name':users
+    }
