@@ -17,7 +17,7 @@
 
 .container-2 {
     background-color: white;
-    /* position: absolute; */
+    position: relative;
     margin-top: -35vh;
     z-index: initial;
     box-shadow: 0 13px 18px rgba(94, 94, 94, 0.35);
@@ -33,10 +33,11 @@
 
 .container-3 {
     z-index: 3;
-    position: relative;
+    position: absolute;
     background: linear-gradient(to right, #0cebeb, #20e3b2, #29ffc6);
     /* height: 30vh; */
-    margin-top: -95vh;
+    margin-top: -30vh;
+    margin-left: 13.5vw;
     width: 70%;
     box-shadow: 0 13px 18px rgba(94, 94, 94, 0.35);
     font-family: 'Rubik', sans-serif;
@@ -74,6 +75,6 @@
 @media only screen and (max-width: 800px) {
     .container-3 {
         /* font-size: 12vw; */
-        margin-top: -140vh;
+        /* margin-top: -140vh; */
     }
 }

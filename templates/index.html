@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" href="../static/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap-grid.css">
     <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.css" > -->
@@ -18,18 +19,67 @@
     <link rel="stylesheet" type="text/css" href="../static/css/slick-theme.css">
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.8.0/slick.css"/> -->
     <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/loader.css">
 
     <!-- <link rel="stylesheet" type="text/css" href="../static/css/cardslider.css"> -->
 
     <!-- <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script> -->
 
     <title>Inter NIT Sports | NIT Kurukshetra</title>
+    <!-- <style>
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #222222;
+            z-index: 99999;
+            height: 100%;
+        }
+        
+        #status {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 64px;
+            height: 64px;
+            margin: -32px 0 0 -32px;
+            padding: 0;
+        }
+    </style> -->
 
 </head>
 
 
 <body>
+    <!-- <div id="preloader">
+        <div id="status">
+            <img height="64" src="../static/sports.png" width="64" />
+        </div>
+    </div> -->
+    <div class="loading-page">
+        <div class="container" style="margin-top:20vh">
+            <div class="row justify-content-center">
+                <div class="col-4 col-md-4 ">
+                    <div class="counter">
+                        <p>loading</p>
+                        <h1>0%
+                            <!--
+                                    h1.abs loading
+                                    h1.abs.color loading
+                                    -->
+                        </h1>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <!-- <svg id="ckLine" xmlns="http://www.w3.org/2000/svg"></svg> -->
 
@@ -181,138 +231,14 @@
                     <div class="col-md-11 ">
                         <div class="container">
                             <div class="row padding-top-2" id="participants">
-                                <!-- <div class="col-12 col-md-4">
-                                    <ul class="list-group">
-                                        <li class="list-group-item active">
-                                            <p>DAY 1</p>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <p>Dapibus ac facilisis in</p>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <p>Morbi leo risus</p>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <p>Porta ac consectetur ac</p>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <p>Vestibulum at eros</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <ul class="list-group">
-                                        <li class="list-group-item active">DAY 2</li>
-                                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                                        <li class="list-group-item">Morbi leo risus</li>
-                                        <li class="list-group-item">Porta ac consectetur ac</li>
-                                        <li class="list-group-item">Vestibulum at eros</li>
-                                    </ul>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <ul class="list-group">
-                                        <li class="list-group-item active">DAY 3</li>
-                                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                                        <li class="list-group-item">Morbi leo risus</li>
-                                        <li class="list-group-item">Porta ac consectetur ac</li>
-                                        <li class="list-group-item">Vestibulum at eros</li>
-                                    </ul>
-                                </div> -->
-                                <!-- 
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4 insti-card">
-                                    <div class="card">
-                                        <p>NATIONAL INSTITUTE OF TECHNOLOGY, KURUKSHETRA</p>
-                                    </div>
-                                </div> -->
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <div class="section page_four ">
-            <div class="container.fluid " style=" ">
-                <div class="row ">
-                    <div class="col-3 col-md-1 organisers_title ">
-                        <div class="organisers_div ">
-                            <span>TIMELINE</span>
-                        </div>
-                    </div>
-                    <div class="col-md-11 margin-top ">
-                    </div>
-                </div>
-            </div>
-        </div> -->
+
         <div class="section page_five " id="page_five ">
             <div class="container ">
                 <div class="row" style="width:100%">
@@ -346,28 +272,80 @@
                     <div class="col-12 ">
                         <span><p>NIT Kurukshetra,</p></span>
                         <span><p>Kurukshetra(Haryana)</p></span>
-                        <span><p>136119</p><span>
-              </div>
+                        <span><p>136119</p></span>
+                    </div>
+
+                </div>
+
 
             </div>
-          </div>
+            <div style="position:absolute; font-size:15px; color:#1d1d1d;bottom:0px;right:10px; text-align:center; font-family:'Open Sans Condensed', sans-serif;">
+                <a type="button" data-toggle="modal" data-target="#devs"><i class="em em-heart"></i>Loved It? meet Developers</a>
+            </div>
 
         </div>
-      </div>
-    
 
-        <!-- Optional JavaScript -->
-        <script src="../static/js/jquery-3.2.1.min.js "></script>
-        <script src="../static/js/bootstrap.js "></script>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="devs" tabindex="-1" role="dialog" aria-labelledby="devs" aria-hidden="true">
+        <div class="modal-dialog modalw" role="document">
+            <button type="button" class="close closedev" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
 
-        <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js " integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=" anonymous "></script> -->
-        <!-- <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.js "></script> -->
-        <script type="text/javascript " src="../static/js/scrolloverflow.min.js "></script>
-        <script type="text/javascript " src="../static/js/jquery.fullpage.min.js "></script>
-        <!-- <script type="text/javascript " src="https://cdn.jsdelivr.net/jquery.slick/1.8.0/slick.min.js "></script> -->
-        <script type="text/javascript " src="../static/js/slick.min.js "></script>
-        <script type="text/javascript " src="../static/js/script.js "></script>
-        <script type="text/javascript " src="../static/js/script2.js "></script>
+            <div class="container" style="margin-top:20vh">
+                <div class="row">
+                    <div class="col-12 col-md-2">
+
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card" style="margin-bottom:20px">
+                            <img class="card-img-top" src="../static/images/PARIS.jpg" alt="Card image cap">
+                            <div class="card-block" style="text-align:center; color:#1d1d1d; font-family:'Roboto Condensed', sans-serif;">
+
+                                <h4 class="card-title">Karan Sharma</h4>
+                                <p>Back End Developer</p>
+                                <i class="fa fa-github" href="https://github.com/avinashbharti97" style="display:inline; margin:5px; font-size:15px"></i>
+                                <i class="fa fa-linkedin" href="https://github.com/avinashbharti97" style="display:inline; margin:5px; font-size:15px"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card" style="">
+                            <img class="card-img-top" src="../static/images/PARIS.jpg" alt="Card image cap">
+                            <div class="card-block" style="text-align:center; color:#1d1d1d; font-family:'Roboto Condensed', sans-serif;">
+                                <h4 class="card-title">Avinash Bharti</h4>
+                                <p>Front End Developer</p>
+                                <i class="fa fa-github" href="https://github.com/avinashbharti97" style="display:inline; margin:5px; font-size:15px"></i>
+                                <i class="fa fa-linkedin" href="https://github.com/avinashbharti97" style="display:inline; margin:5px; font-size:15px"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <script src="../static/js/jquery-3.2.1.min.js "></script>
+    <script src="../static/js/bootstrap.bundle.min.js "></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js " integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=" anonymous "></script> -->
+    <!-- <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.js "></script> -->
+    <script type="text/javascript " src="../static/js/scrolloverflow.min.js "></script>
+    <script type="text/javascript " src="../static/js/jquery.fullpage.min.js "></script>
+    <!-- <script type="text/javascript " src="https://cdn.jsdelivr.net/jquery.slick/1.8.0/slick.min.js "></script> -->
+    <script type="text/javascript " src="../static/js/slick.min.js "></script>
+    <script type="text/javascript " src="../static/js/loader.js "></script>
+    <script type="text/javascript " src="../static/js/script2.js "></script>
+    <script type="text/javascript " src="../static/js/script.js "></script>
+
 
 </body>
 

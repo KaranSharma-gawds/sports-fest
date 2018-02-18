@@ -520,13 +520,25 @@ nav ul a:hover::after {
     border-right: none;
     border-top: none;
     border-bottom: none;
-    /* border-image: linear-gradient(to right, #FF5F6D, #FFC371); */
+    border-image: linear-gradient(to right, #FF5F6D, #FFC371);
     border-image-slice: 1;
-    /* box-shadow: 0 13px 18px rgba(94, 94, 94, 0.35); */
+    box-shadow: 0 13px 18px rgba(0, 0, 0, 0.72);
     margin-bottom: 10px;
     border-width: 4px;
     padding-left: 10px;
     border-radius: 0px !important;
+    text-align: center;
+}
+
+.closedev {
+    color: white !important;
+    font-size: 3.2rem !important;
+    opacity: 1 !important;
+}
+
+#devs {
+    background-color: #1d1d1d !important;
+    color: white;
 }
 
 
@@ -544,3 +556,10 @@ nav ul a:hover::after {
     width: 100vw;
     background: linear-gradient(to right, #0cebeb, #20e3b2, #29ffc6);
 } */
+
+
+/*contact card */
+
+.modalw {
+    max-width: 90vw !important;
+}

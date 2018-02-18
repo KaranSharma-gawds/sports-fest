@@ -1,6 +1,6 @@
 $(document).ready(function() {
     function Item2(name, designation, institute, image_url) {
-        var obj = '<div class="col-12 col-md-3 profile_card" style="margin-bottom:30px"><div class="card card_style" style=""><img class="card-img-top" src="static/photos/' + image_url + '" alt="Card image cap"><div class="card-body" style="text-align:center"><h4 class="card-text">' + name + '</h4><h6 class="card-text">' + designation + '</h6><p class="card-text">' + institute + '</p></div></div></div>';
+        var obj = '<div class="col-12 col-md-3 profile_card" style="margin-bottom:30px"><div class="card card_style" style=""><img class="card-img-top" src="static/photos/' + image_url + '" alt="Card image cap"><div class="card-body" style="text-align:center"><h4 class="card-text">' + name + '</h4><h6 class="card-text">' + designation + '</h6><p class="card-text insti-name">' + institute + '</p></div></div></div>';
         // var obj = '<div class="event-card-2" onclick=location.href="' + link + '"><span>' + name + '</span></div>';
         obj = $.parseHTML(obj);
         return obj[0];

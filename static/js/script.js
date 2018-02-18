@@ -9,6 +9,7 @@ $(document).ready(function() {
     });
 
 
+
     function Item(link, name) {
         var obj = '<div class="col-12 col-md-3"><div class="event-card-2" onclick=location.href="' + link + '"><span><p>' + name + '</p></span></div></div>';
         obj = $.parseHTML(obj);

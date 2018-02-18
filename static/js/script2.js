@@ -1,8 +1,9 @@
-console.log("hey");
 $(document).ready(function() {
+
+
     function Item(id, name) {
         // var obj = '<div class="col-12 col-md-4"><div class="event-card-2" onclick=location.href="' + link + '"><span><p>' + name + '</p></span></div></div>';
-        var obj = '<div class="col-12 col-md-4 "><div class="card insti-card"><p>' + name + '</p></div></div>'
+        var obj = '<div class="col-12 col-md-3 "><div class="card insti-card"><p>' + name + '</p></div></div>'
         obj = $.parseHTML(obj);
         return obj[0];
     }
