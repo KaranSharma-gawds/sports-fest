@@ -26,7 +26,7 @@ def notifications():
     return render_template('notifications.html')
 
 @sports.route('/dashboard', methods=['GET'])
-# @login_required
+@login_required
 def dashboard():
     return render_template('dashboard.html')
 
