@@ -31,6 +31,7 @@ def load_user(user_id):
 def user_login():
     user_name = request.data['user_name']
     user = User.query.filter_by(username=user_name).first()
+    session.close()
     if not user:
         return {
             'status':'BAD REQUEST',
@@ -57,6 +58,7 @@ def user_login():
 @login_required
 def logout():
     logout_user()
+    session.close()
     return redirect('/signin')
     # return {
     #     'status':'OK',
@@ -71,6 +73,7 @@ def register():
     institution = request.data['institution']
     user = User.query.filter_by(username=user_name).first()
     if user is not None:
+        session.close()
         return {
             'status':'BAD REQUEST',
             'message':'USER ALREADY EXISTS',
@@ -78,6 +81,7 @@ def register():
             'institution':user.institution
         }, 201
     if not Institution.query.filter_by(id=institution).first():
+        session.close()
         return {
             'status':'BAD REQUEST',
             'message':'INSTITUTION DOES NOT EXIST'
@@ -85,6 +89,7 @@ def register():
     info = User(username=user_name, institution=institution,password=password)
     session.add(info)
     session.commit()
+    session.close()
     return redirect('/dashboard')
     # return {
     #     'status':'SUCCESS',
@@ -94,6 +99,7 @@ def register():
 @login.route('/', methods=['GET'])
 def some():
     user_result = User.query.all()
+    session.close()
     users = []
     for each_user in user_result:
         users.append(each_user.username)

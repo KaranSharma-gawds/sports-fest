@@ -10,7 +10,7 @@ PORT = 8080
 SECRET_KEY = 'suck my dick'
 
 PHOTOS_UPLOAD_FOLDER = 'static/photos'
-DOCUMENTS_UPLOAD_FOLDER = 'static/documents'
+DOCUMENTS_UPLOAD_FOLDER = os.path.join('static','documents') #'static/documents'
 ALLOWED_PHOTO_EXTENTIONS = set(['jpg', 'jpeg', 'png'])
 ALLOWED_DOCUMENT_EXTENTIONS = set(['pdf'])
 class ActivityType(Enum):
