@@ -9,6 +9,7 @@ session = DatabaseHandler.connect_to_database()
 @sports_fest.route('/get', methods=['GET'])
 def get_all_fests():
     fests = Fest.query.all()
+    session.close()
     fest_json_array = []
     for  each_fest in fests:
         fest_json_array.append({
@@ -35,7 +36,8 @@ def add_sports_fest():
     # no_of_days = request.data['no_of_days']
     info = Fest(year=year)
     session.add(info)
-    session.commit() 
+    session.commit()
+    session.close()
     return {
         'status':'OK',
         'message':'SUCCESSFULLY ADDED FEST'
@@ -44,6 +46,7 @@ def add_sports_fest():
 @sports_fest.route('/get/<int:year>', methods=['GET'])
 def get_fest(year):
     req_fest = Fest.query.filter_by(year=year).first()
+    session.close()
     fest_json = {
         'year':req_fest.year,
         # 'host':req_fest.host,

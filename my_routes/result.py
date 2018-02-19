@@ -11,6 +11,7 @@ session = DatabaseHandler.connect_to_database()
 def get_result(event_id):
     # event = request.data['event']
     result = Result.query.filter_by(event_id=event_id).first()
+    session.close()
     if not result:
         print('------------------no result uploaded yet---------------')
         return {
@@ -49,6 +50,7 @@ def add_result():
     third_institution = request.data['third_institution']
     print('event:'+event+'firstname:'+first_name+'first_institution:'+first_institution+'-----------------------------------------------')
     if not Event.query.filter_by(id=event).first():
+        session.close()
         return {
             'status':'BAD REQUEST',
             'message':'EVENT DOES NOT EXIST'
@@ -58,6 +60,7 @@ def add_result():
                     third_institution=third_institution)
     session.add(info)
     session.commit()
+    session.close()
     return redirect('/dashboard')
     # return {
     #     'status':'OK',

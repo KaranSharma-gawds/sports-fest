@@ -10,6 +10,7 @@ session = DatabaseHandler.connect_to_database()
 # @login_required
 def get_institutions():
     colleges = Institution.query.all()
+    session.close()
     college_json_array = []
     for college in colleges:
         user_json = {
@@ -35,11 +36,13 @@ def add_institution():
     info = Institution(name = request.data['college_name'], short = request.data['college_short'])
     session.add(info)
     session.commit()
+    session.close()
     return redirect('/dashboard')
 
 @institute.route('/get/<int:id>', methods=['GET'])
 def get_institution(id):
     college = Institution.query.filter_by(id=id).first()
+    session.close()
     if not college:
         return {
             'status':'BAD REQUEST',

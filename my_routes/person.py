@@ -11,6 +11,7 @@ session = DatabaseHandler.connect_to_database()
 @people.route('/get', methods=['GET'])
 def get_people():
     all_people = Person.query.all()
+    session.close()
     people_json_array = []
     for person in all_people:
         people_json_array.append({
@@ -38,6 +39,7 @@ def get_people():
 # @login_required
 def add_person():
     if 'photo' not in request.files:
+        session.close()
         # flash('no photo part in request')
         print('no photo part in request')
         return redirect(request.url)
@@ -51,6 +53,7 @@ def add_person():
     obj = upload_file(photo, 'IMG')
     if obj['status'] == 'BAD REQUEST':
         print(obj['message'])
+        session.close()
         return obj
     if obj['status'] == 'OK':
         print(obj['message'])
@@ -60,7 +63,9 @@ def add_person():
                         email_id=email_id, contact_no=contact_no, image_url=filename)
         session.add(info)
         session.commit()
+        session.close()
         return redirect('/dashboard')
+    session.close()
     return {
         'status':'ERROR',
         'message':'UNPREDICTED ERROR OCCURRED'
