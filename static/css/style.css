@@ -202,6 +202,9 @@ nav ul a:hover::after {
     body {
         overflow-x: hidden !important;
     }
+    #eventsp {
+        visibility: hidden;
+    }
     .responsive {
         margin-top: 0vh !important;
     }

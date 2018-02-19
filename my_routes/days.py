@@ -55,7 +55,7 @@ def get_day_by_id(day_id):
     }
 
 @day.route('/<int:event_id>/add', methods=['POST'])
-# @login_required
+@login_required
 def add_blank_day(event_id):
     name = request.data['name']
     info = Day(event_id=event_id, name=name, result_pdf=None, schedule_pdf=None)

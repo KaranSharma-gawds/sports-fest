@@ -100,13 +100,13 @@ def register():
     #     'message':'SUCCESSFULLY REGISTERED'
     # }, 200
 
-@login.route('/', methods=['GET'])
-def some():
-    user_result = session.query(User).all()
-    session.close()
-    users = []
-    for each_user in user_result:
-        users.append(each_user.username)
-    return {
-        'name':users
-    }
+# @login.route('/', methods=['GET'])
+# def some():
+#     user_result = session.query(User).all()
+#     session.close()
+#     users = []
+#     for each_user in user_result:
+#         users.append(each_user.username)
+#     return {
+#         'name':users
+#     }

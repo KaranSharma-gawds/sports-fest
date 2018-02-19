@@ -7,7 +7,7 @@ from . import events
 
 session = DatabaseHandler.connect_to_database()
 @events.route('/<int:year>/add', methods=['POST'])
-# @login_required
+@login_required
 def add_event(year):
     req_fest = session.query(Fest).filter_by(year=year).first()
     if not req_fest:
@@ -27,7 +27,7 @@ def add_event(year):
         session.rollback()
     finally:
         session.close()
-    # return redirect('/dashboard')
+    return redirect('/dashboard')
     return {
         'status':'OK',
         'message':'SUCCESSFULLY ADDED EVENT',
