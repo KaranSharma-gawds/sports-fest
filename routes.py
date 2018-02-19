@@ -58,3 +58,7 @@ def add_institute():
 @sports.route('/something', methods=['GET'])
 def something():
     return render_template('images.html')
+
+@sports.route('/schedule-and-result', methods=['GET'])
+def s_and_r():
+    return render_template('scheduleandresult.html')

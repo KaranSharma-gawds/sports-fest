@@ -16,12 +16,18 @@ def get_days_by_event(event_id):
         }, 400
     days = Day.query.filter_by(event_id=event_id).all()
     result = []
+    # ids = []
     for each_day in days:
-        result.append(each_day.name)
+        result.append({
+            'name':each_day.name,
+            'id':each_day.id
+        })
+        # ids.append(each_day.id)
     return {
         'status':'OK',
         'message':'SUCCESSFULLY RECIEVED RESULT',
-        'array':result
+        'array':result,
+        # 'ids':ids
     }
 
 @day.route('/get/<int:day_id>', methods=['GET'])
