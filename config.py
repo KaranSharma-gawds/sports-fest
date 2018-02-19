@@ -8,11 +8,11 @@ DEBUG = True
 HOST = '0.0.0.0'
 PORT = 8080
 SECRET_KEY = 'suck my dick'
-
+UNEXPECTED_ERROR = 'Unexpected error occured, did you put in all the values?'
 PHOTOS_UPLOAD_FOLDER = 'static/photos'
 DOCUMENTS_UPLOAD_FOLDER = os.path.join('static','documents') #'static/documents'
 ALLOWED_PHOTO_EXTENTIONS = set(['jpg', 'jpeg', 'png'])
-ALLOWED_DOCUMENT_EXTENTIONS = set(['pdf'])
+ALLOWED_DOCUMENT_EXTENTIONS = set(['pdf', 'docx', 'xlsx', 'odt', 'doc', 'txt', 'rtf', 'PDF', 'DOC', 'DOCX', 'XLSX', 'ODT', 'RTF', 'TXT'])
 class ActivityType(Enum):
     ADDED_EVENT = 1
     ADDED_PHOTO = 2

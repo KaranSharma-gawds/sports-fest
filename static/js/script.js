@@ -18,7 +18,7 @@ $(document).ready(function() {
     $.ajax({
         dataType: "json",
         // url: "https://5a5b96f44611170012fe752c.mockapi.io/api/event",
-        url: "http://localhost:8080/api/event/2016/get",
+        url: "/api/event/2016/get",
 
         method: "GET",
         success: function(data) {

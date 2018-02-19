@@ -14,9 +14,10 @@ $(document).ready(function() {
         return obj[0];
     }
     $.ajax({
-        url: "http://localhost:8080/api/day/get/" + id,
+        url: "/api/day/get/" + id,
         method: "GET",
         success: function(data) {
+            console.log(data);
             // var templateData = [];
             // console.log(templateData);
             $("#event_name").append(data.name);

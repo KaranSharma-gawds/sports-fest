@@ -1,9 +1,9 @@
-from flask import request, redirect
+from flask import request, redirect, flash
 from flask_login import login_required
 from models import Institution
 from connection import DatabaseHandler
 from . import institute
-
+import config as config
 session = DatabaseHandler.connect_to_database()
 
 @institute.route('/get', methods=['GET'])
@@ -35,8 +35,13 @@ def get_institutions():
 def add_institution():
     info = Institution(name = request.data['college_name'], short = request.data['college_short'])
     session.add(info)
-    session.commit()
-    session.close()
+    try:
+        session.commit()
+    except:
+        session.rollback()
+        flash(config.UNEXPECTED_ERROR)
+    finally:
+        session.close()
     return redirect('/dashboard')
 
 @institute.route('/get/<int:id>', methods=['GET'])

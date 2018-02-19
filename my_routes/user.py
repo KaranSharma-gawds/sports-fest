@@ -4,11 +4,11 @@ try:
     from urllib.parse import urlparse, urljoin
 except ImportError:
      from urlparse import urlparse, urljoin
-from flask import request, abort, redirect
+from flask import request, abort, redirect, flash
 from models import User, Institution
 from connection import DatabaseHandler
 from flask_login import login_required, logout_user, current_user, login_user
-
+import config as config
 session = DatabaseHandler.connect_to_database()
 
 def is_safe_url(target):
@@ -88,7 +88,11 @@ def register():
         }, 201
     info = User(username=user_name, institution=institution,password=password)
     session.add(info)
-    session.commit()
+    try:
+        session.commit()
+    except:
+        session.rollback()
+        flash(config.UNEXPECTED_ERROR)
     session.close()
     return redirect('/dashboard')
     # return {

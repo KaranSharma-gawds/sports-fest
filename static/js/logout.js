@@ -6,7 +6,7 @@ $(document).ready(function() {
     $logout.on("submit", function(e) {
         console.log('somethif');
         $.ajax({
-            url: "http://localhost:8080/api/user/logout",
+            url: "/api/user/logout",
             method: "POST",
             data: data,
             success: function(data) {

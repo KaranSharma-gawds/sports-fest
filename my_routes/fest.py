@@ -1,8 +1,9 @@
-from flask import request
+from flask import request, flash
 from flask_login import login_required
 from models import Fest
 from connection import DatabaseHandler
 from . import sports_fest
+import config as config
 
 session = DatabaseHandler.connect_to_database()
 
@@ -36,8 +37,13 @@ def add_sports_fest():
     # no_of_days = request.data['no_of_days']
     info = Fest(year=year)
     session.add(info)
-    session.commit()
-    session.close()
+    try:
+        session.commit()
+    except:
+        session.rollback()
+        flash(config.UNEXPECTED_ERROR)
+    finally:
+        session.close()
     return {
         'status':'OK',
         'message':'SUCCESSFULLY ADDED FEST'

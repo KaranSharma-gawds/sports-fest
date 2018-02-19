@@ -55,6 +55,21 @@ def add_result():
 def add_institute():
     return render_template('addinsti.html', filetype='photo', url='/api/institute/add')
 
+@sports.route('/day/add', methods=['GET'])
+@login_required
+def add_day():
+    return render_template('add_day.html', filetype='doc', url='/api/<int:event_id>/add')
+
+@sports.route('/daily-fix/add', methods=['GET'])
+# @login_required
+def add_daily_fix():
+    return render_template('add_fix.html', filetype='doc', url='/api/upload/fixture/<int:day_id>')
+
+@sports.route('/daily-result/add', methods=['GET'])
+# @login_required
+def add_daily_result():
+    return render_template('add_result.html', filetype='doc', url='/api/upload/result/<int:day_id>')
+
 @sports.route('/something', methods=['GET'])
 def something():
     return render_template('images.html')

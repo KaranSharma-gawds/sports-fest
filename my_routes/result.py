@@ -1,17 +1,16 @@
 import datetime as datetime
-from flask import request, redirect
+from flask import request, redirect, flash
 from flask_login import login_required
 from models import Event, Fest, Result, Institution
 from connection import DatabaseHandler
 from . import event_result
-
+import config as config
 session = DatabaseHandler.connect_to_database()
 
 @event_result.route('/get/<int:event_id>', methods=['GET'])
 def get_result(event_id):
     # event = request.data['event']
     result = session.query(Result).filter_by(event_id=event_id).first()
-    session.close()
     if not result:
         print('------------------no result uploaded yet---------------')
         return {
@@ -22,7 +21,7 @@ def get_result(event_id):
     first_institution_name = session.query(Institution).filter_by(id=result.first_institution).first().name
     second_institution_name = session.query(Institution).filter_by(id=result.second_institution).first().name
     third_institution_name = session.query(Institution).filter_by(id=result.third_institution).first().name
-    
+    session.close()
     result_json = {
         'event_id':result.event_id,
         'first_name':result.first_name,
@@ -59,8 +58,13 @@ def add_result():
                     second_name=second_name, second_institution=second_institution, third_name=third_name, \
                     third_institution=third_institution)
     session.add(info)
-    session.commit()
-    session.close()
+    try:
+        session.commit()
+    except:
+        session.rollback()
+        flash(config.UNEXPECTED_ERROR)
+    finally:
+        session.close()
     return redirect('/dashboard')
     # return {
     #     'status':'OK',

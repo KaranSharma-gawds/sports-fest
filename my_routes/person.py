@@ -1,11 +1,11 @@
-from flask import request, redirect, render_template
+from flask import request, redirect, render_template, flash
 from flask_login import login_required
 from models import Person
 from connection import DatabaseHandler
 import os, config as config
 from .upload_file import upload_file
 from . import people
-
+import config as config
 session = DatabaseHandler.connect_to_database()
 
 @people.route('/get', methods=['GET'])
@@ -62,11 +62,17 @@ def add_person():
         info = Person(name=name, institution=institution, designation=designation, role=role, \
                         email_id=email_id, contact_no=contact_no, image_url=filename)
         session.add(info)
-        session.commit()
-        session.close()
+        try:
+            session.commit()
+        except:
+            session.rollback()
+            flash(config.UNEXPECTED_ERROR)
+            return redirect('/dashboard')
+        finally:
+            session.close()
+        flash('success')
         return redirect('/dashboard')
-    session.close()
     return {
         'status':'ERROR',
         'message':'UNPREDICTED ERROR OCCURRED'
-    }
+    }, 500

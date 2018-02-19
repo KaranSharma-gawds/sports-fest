@@ -21,8 +21,12 @@ def add_event(year):
     # day = request.data['day']
     info = Event(fest=year, name=name, venue=venue)
     session.add(info)
-    session.commit()
-    session.close()
+    try:
+        session.commit()
+    except:
+        session.rollback()
+    finally:
+        session.close()
     # return redirect('/dashboard')
     return {
         'status':'OK',

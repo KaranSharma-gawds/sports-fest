@@ -1,11 +1,11 @@
 import datetime as datetime
-from flask import request, redirect, render_template
+from flask import request, redirect, render_template, flash
 from models import UploadedFile, Event
 from connection import DatabaseHandler
 from flask_login import login_required
 from . import upload_route
 from .upload_file import upload_file
-
+import config as config
 session = DatabaseHandler.connect_to_database()
 @upload_route.route('/image/add', methods=['POST'])
 @login_required
@@ -57,7 +57,11 @@ def upload_doc():
         filename = obj['filename']
         info = UploadedFile(filename=filename, file_type='DOC')
         session.add(info)
-        session.commit()
+        try:
+            session.commit()
+        except:
+            sesssion.rollback()
+            flash(config.UNEXPECTED_ERROR)
         session.close()
         return redirect('/dashboard')
     session.close()

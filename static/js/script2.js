@@ -10,7 +10,7 @@ $(document).ready(function() {
     $.ajax({
         dataType: "json",
         // url: "https://5a5b96f44611170012fe752c.mockapi.io/api/event",
-        url: "http://localhost:8080/api/institute/get",
+        url: "/api/institute/get",
 
         method: "GET",
         success: function(data) {

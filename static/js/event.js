@@ -7,7 +7,7 @@ $(document).ready(function() {
         return obj[0];
     }
     $.ajax({
-        url: "http://localhost:8080/api/day/" + id + "/get",
+        url: "/api/day/" + id + "/get",
         method: "GET",
         success: function(data) {
             console.log(data.array);
@@ -31,7 +31,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: "http://localhost:8080/api/event/2016/get/" + id,
+        url: "/api/event/2016/get/" + id,
         method: "GET",
         success: function(data) {
             console.log(data.event);
@@ -43,7 +43,7 @@ $(document).ready(function() {
         }
     });
     $.ajax({
-        url: "http://localhost:8080/api/result/get/" + id,
+        url: "/api/result/get/" + id,
         method: "GET",
         success: function(data) {
             // console.log(data.result.first_name);
