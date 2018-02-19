@@ -7,3 +7,4 @@ documents/
 flask-restful/
 .ropeproject/
 config.pyc
+*.pyc

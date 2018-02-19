@@ -1,4 +1,4 @@
-from flask import request, redirect
+from flask import request, redirect, render_template
 from flask_login import login_required
 from models import Event, Day
 from connection import DatabaseHandler
@@ -10,23 +10,32 @@ session = DatabaseHandler.connect_to_database()
 def get_days_by_event(event_id):
     event = Event.query.filter_by(id=event_id).first()
     if not event:
+        session.close()
         return{
             'status':'BAD REQUEST',
             'message':'NO SUCH EVENT'
         }, 400
     days = Day.query.filter_by(event_id=event_id).all()
     result = []
+    # ids = []
     for each_day in days:
-        result.append(each_day.name)
+        result.append({
+            'name':each_day.name,
+            'id':each_day.id
+        })
+        # ids.append(each_day.id)
+    session.close()
     return {
         'status':'OK',
         'message':'SUCCESSFULLY RECIEVED RESULT',
-        'array':result
+        'array':result,
+        # 'ids':ids
     }
 
 @day.route('/get/<int:day_id>', methods=['GET'])
 def get_day_by_id(day_id):
     day = Day.query.filter_by(id=day_id).first()
+    session.close()
     if not day:
         return {
             'status':'OK',
@@ -52,6 +61,7 @@ def add_blank_day(event_id):
     info = Day(event_id=event_id, name=name, result_pdf=None, schedule_pdf=None)
     session.add(info)
     session.commit()
+    session.close()
     # return redirect('/dashboard')
     return {
         'status':'OK'
@@ -59,14 +69,17 @@ def add_blank_day(event_id):
 @day.route('/upload/result/<int:day_id>', methods=['POST', 'GET'])
 def upload_result(day_id):
     if request.method == 'GET':
-        return render_template('upload_day_result.html', url=url, filetype='doc')
+        session.close()
+        return render_template('upload_day_result.html', url=request.url, filetype='doc')
     if 'doc' not in request.files:
+        session.close()
         # flash('no doc part in request')
         print('no doc part in request')
         return redirect(request.url)
     photo = request.files['doc']
     obj = upload_file(photo, 'DOC')
     if obj['status'] == 'BAD REQUEST':
+        session.close()
         print(obj['message'])
         return obj
     if obj['status'] == 'OK':
@@ -77,6 +90,7 @@ def upload_result(day_id):
         my_day.result_pdf = filename
         session.add(my_day)
         session.commit()
+        session.close()
         return redirect('/dashboard')
     return {
         'status':'ERROR',

@@ -11,6 +11,7 @@ session = DatabaseHandler.connect_to_database()
 def add_event(year):
     req_fest = Fest.query.filter_by(year=year).first()
     if not req_fest:
+        session.close()
         return {
             'status':'BAD REQUEST',
             'message':'NO SUCH FEST'
@@ -21,6 +22,7 @@ def add_event(year):
     info = Event(fest=year, name=name, venue=venue)
     session.add(info)
     session.commit()
+    session.close()
     # return redirect('/dashboard')
     return {
         'status':'OK',
@@ -37,6 +39,7 @@ def get_events(year):
             'name':each_event.name,
             'id':each_event.id
         })
+    session.close()
     return {
         'status':'OK',
         'message':'SUCCESS',
@@ -46,6 +49,7 @@ def get_events(year):
 @events.route('/<int:year>/get/<int:id>', methods=['GET'])
 def get_event(year, id):
     event = Event.query.filter_by(fest=year, id=id).first()
+    session.close()
     if not event:
         return {
             'status':'BAD REQUEST',
