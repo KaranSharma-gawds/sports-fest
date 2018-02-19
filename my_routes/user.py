@@ -19,7 +19,7 @@ def is_safe_url(target):
 
 @login_manager.user_loader
 def load_user(user_id):
-    my_user = User.query.filter_by(username=user_id).first()
+    my_user = session.query(User).filter_by(username=user_id).first()
     print('inside load user')
     if not my_user:
         print('load user returning none')
@@ -30,7 +30,7 @@ def load_user(user_id):
 @login.route('/login', methods=['POST'])
 def user_login():
     user_name = request.data['user_name']
-    user = User.query.filter_by(username=user_name).first()
+    user = session.query(User).filter_by(username=user_name).first()
     session.close()
     if not user:
         return {
@@ -71,7 +71,7 @@ def register():
     user_name = request.data['user_name']
     password = request.data['password']
     institution = request.data['institution']
-    user = User.query.filter_by(username=user_name).first()
+    user = session.query(User).filter_by(username=user_name).first()
     if user is not None:
         session.close()
         return {
@@ -80,7 +80,7 @@ def register():
             'username': user.username,
             'institution':user.institution
         }, 201
-    if not Institution.query.filter_by(id=institution).first():
+    if not session.query(Institution).filter_by(id=institution).first():
         session.close()
         return {
             'status':'BAD REQUEST',
@@ -98,7 +98,7 @@ def register():
 
 @login.route('/', methods=['GET'])
 def some():
-    user_result = User.query.all()
+    user_result = session.query(User).all()
     session.close()
     users = []
     for each_user in user_result:

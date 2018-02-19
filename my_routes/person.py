@@ -10,7 +10,7 @@ session = DatabaseHandler.connect_to_database()
 
 @people.route('/get', methods=['GET'])
 def get_people():
-    all_people = Person.query.all()
+    all_people = session.query(Person).all()
     session.close()
     people_json_array = []
     for person in all_people:

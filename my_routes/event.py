@@ -9,7 +9,7 @@ session = DatabaseHandler.connect_to_database()
 @events.route('/<int:year>/add', methods=['POST'])
 # @login_required
 def add_event(year):
-    req_fest = Fest.query.filter_by(year=year).first()
+    req_fest = session.query(Fest).filter_by(year=year).first()
     if not req_fest:
         session.close()
         return {
@@ -31,7 +31,7 @@ def add_event(year):
 
 @events.route('/<int:year>/get', methods=['GET'])
 def get_events(year):
-    all_events = Event.query.filter_by(fest=year).all()
+    all_events = session.query(Event).filter_by(fest=year).all()
     event_json_array = []
     for each_event in all_events:
         event_json_array.append({
@@ -48,7 +48,7 @@ def get_events(year):
 
 @events.route('/<int:year>/get/<int:id>', methods=['GET'])
 def get_event(year, id):
-    event = Event.query.filter_by(fest=year, id=id).first()
+    event = session.query(Event).filter_by(fest=year, id=id).first()
     session.close()
     if not event:
         return {

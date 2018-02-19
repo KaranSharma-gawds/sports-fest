@@ -9,7 +9,7 @@ session = DatabaseHandler.connect_to_database()
 @institute.route('/get', methods=['GET'])
 # @login_required
 def get_institutions():
-    colleges = Institution.query.all()
+    colleges = session.query(Institution).all()
     session.close()
     college_json_array = []
     for college in colleges:
@@ -41,7 +41,7 @@ def add_institution():
 
 @institute.route('/get/<int:id>', methods=['GET'])
 def get_institution(id):
-    college = Institution.query.filter_by(id=id).first()
+    college = session.query(Institution).filter_by(id=id).first()
     session.close()
     if not college:
         return {

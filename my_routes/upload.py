@@ -69,7 +69,7 @@ def upload_doc():
 @upload_route.route('/image/get', methods=['GET'])
 def load_images():
     # event_id = request.data['event_id']
-    image_records = UploadedFile.query.filter_by(file_type='IMAGE').all()
+    image_records = session.query(UploadedFile).filter_by(file_type='IMAGE').all()
     session.close()
     image_url_array = []
     for image_record in image_records:
@@ -88,7 +88,7 @@ def load_docs():
     #         'status':'BAD REQUEST',
     #         'message':'EVENT DOES NOT EXIST'
     #     }
-    doc_records = UploadedFile.query.filter_by(file_type='DOC').all()
+    doc_records = session.query(UploadedFile).filter_by(file_type='DOC').all()
     session.close()
     doc_url_array = []
     for doc_record in doc_records:

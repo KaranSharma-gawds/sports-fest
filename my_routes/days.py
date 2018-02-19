@@ -48,7 +48,7 @@ def get_day_by_id(day_id):
     return {
         'status':'OK',
         'message':'SUCCESSFULLY RECIEVED DAY INFORMATION',
-        'result_pdf':day.result_pdf,
+        'result_pdf':'/static/documents/'+ day.result_pdf,
         'fixture_pdf':day.schedule_pdf,
         'name':day.name,
         'id':day.id
@@ -69,10 +69,7 @@ def add_blank_day(event_id):
 @day.route('/upload/result/<int:day_id>', methods=['POST', 'GET'])
 def upload_result(day_id):
     if request.method == 'GET':
-<<<<<<< HEAD
-=======
         session.close()
->>>>>>> inter_nit
         return render_template('upload_day_result.html', url=request.url, filetype='doc')
     if 'doc' not in request.files:
         session.close()

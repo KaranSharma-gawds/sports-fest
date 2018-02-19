@@ -10,7 +10,7 @@ session = DatabaseHandler.connect_to_database()
 @event_result.route('/get/<int:event_id>', methods=['GET'])
 def get_result(event_id):
     # event = request.data['event']
-    result = Result.query.filter_by(event_id=event_id).first()
+    result = session.query(Result).filter_by(event_id=event_id).first()
     session.close()
     if not result:
         print('------------------no result uploaded yet---------------')
@@ -19,9 +19,9 @@ def get_result(event_id):
             'message':'SUCCESS',
             'result':None
         }
-    first_institution_name = Institution.query.filter_by(id=result.first_institution).first().name
-    second_institution_name = Institution.query.filter_by(id=result.second_institution).first().name
-    third_institution_name = Institution.query.filter_by(id=result.third_institution).first().name
+    first_institution_name = session.query(Institution).filter_by(id=result.first_institution).first().name
+    second_institution_name = session.query(Institution).filter_by(id=result.second_institution).first().name
+    third_institution_name = session.query(Institution).filter_by(id=result.third_institution).first().name
     
     result_json = {
         'event_id':result.event_id,
@@ -49,7 +49,7 @@ def add_result():
     third_name = request.data['third_name']
     third_institution = request.data['third_institution']
     print('event:'+event+'firstname:'+first_name+'first_institution:'+first_institution+'-----------------------------------------------')
-    if not Event.query.filter_by(id=event).first():
+    if not session.query(Event).filter_by(id=event).first():
         session.close()
         return {
             'status':'BAD REQUEST',
