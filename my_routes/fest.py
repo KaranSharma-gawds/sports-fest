@@ -13,7 +13,7 @@ def get_all_fests():
     for  each_fest in fests:
         fest_json_array.append({
             'year':each_fest.year,
-            'host':each_fest.host,
+            # 'host':each_fest.host,
             'no_of_days':each_fest.no_of_days
         })
     if fest_json_array.count == 0:
@@ -27,32 +27,26 @@ def get_all_fests():
         'array':fest_json_array
     }, 200
 
-@sports_fest.route('/add', methods=['GET','POST'])
+@sports_fest.route('/add', methods=['POST'])
 # @login_required
 def add_sports_fest():
-    if request.method == 'POST':
-        year = request.data['year']
-        host = request.data['host']
-        no_of_days = request.data['no_of_days']
-        info = Fest(year=year, host=host, no_of_days=no_of_days)
-        session.add(info)
-        session.commit() 
-        return {
-            'status':'OK',
-            'message':'SUCCESSFULLY ADDED FEST'
-        }, 200
-    else:
-        return {
-            'status':'OK',
-            'message':'RUNNING',
-        }, 200
+    year = request.data['year']
+    # host = request.data['host']
+    # no_of_days = request.data['no_of_days']
+    info = Fest(year=year)
+    session.add(info)
+    session.commit() 
+    return {
+        'status':'OK',
+        'message':'SUCCESSFULLY ADDED FEST'
+    }, 200
 
 @sports_fest.route('/get/<int:year>', methods=['GET'])
 def get_fest(year):
     req_fest = Fest.query.filter_by(year=year).first()
     fest_json = {
         'year':req_fest.year,
-        'host':req_fest.host,
+        # 'host':req_fest.host,
         'no_of_days':req_fest.no_of_days
     }
     return {

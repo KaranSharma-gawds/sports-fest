@@ -1,38 +1,35 @@
 import datetime as datetime
-from flask import request, render_template
+from flask import request, redirect
 from flask_login import login_required
 from models import Event, Fest
 from connection import DatabaseHandler
 from . import events
 
 session = DatabaseHandler.connect_to_database()
-@events.route('/<int:year>/add', methods=['GET', 'POST'])
-# @login_required
+@events.route('/<int:year>/add', methods=['POST'])
+@login_required
 def add_event(year):
-    if request.method == 'POST':
-        req_fest = Fest.query.filter_by(year=year).first()
-        if not req_fest:
-            return {
-                'status':'BAD REQUEST',
-                'message':'NO SUCH FEST'
-            }, 201
-        name = request.data['name']
-        day = request.data['day']
-        start_time = datetime.datetime.strptime(request.data['start_time'], '%H:%M').time()
-        end_time = datetime.datetime.strptime(request.data['end_time'], '%H:%M').time()
-        venue = request.data['venue']
-        info = Event(fest=year, name=name, day=day, start_time=start_time, end_time=end_time, venue=venue)
-        session.add(info)
-        session.commit()
+    req_fest = Fest.query.filter_by(year=year).first()
+    if not req_fest:
         return {
-            'status':'OK',
-            'message':'SUCCESSFULLY ADDED EVENT',
-        }, 200
-    else:
-        return {
-            'status':'OK',
-            'message':'RUNNING',
-        }, 200
+            'status':'BAD REQUEST',
+            'message':'NO SUCH FEST'
+        }, 201
+    name = request.data['name']
+    # day = request.data['day']
+    day = datetime.datetime.strptime(request.data['day'], '%Y-%m-%d').date()
+    start_time = datetime.datetime.strptime(request.data['start_time'], '%H:%M').time()
+    end_time = datetime.datetime.strptime(request.data['end_time'], '%H:%M').time()
+    venue = request.data['venue']
+    info = Event(fest=year, name=name, day=day, start_time=start_time, end_time=end_time, venue=venue)
+    print
+    session.add(info)
+    session.commit()
+    return redirect('/dashboard')
+    # return {
+    #     'status':'OK',
+    #     'message':'SUCCESSFULLY ADDED EVENT',
+    # }, 200
 
 @events.route('/<int:year>/get', methods=['GET'])
 def get_events(year):
@@ -71,12 +68,9 @@ def get_event(year, id):
         'venue':event.venue,
         'id':event.id
     }
+    print(str(event.day))
     return {
         'status':'OK',
         'message':'SUCCESS',
         'event':event_json
     }, 200
-
-@events.route('/', methods=['GET'])
-def page_loader():
-    return render_template('event.html')

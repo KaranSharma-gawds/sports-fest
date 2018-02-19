@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, redirect
 from flask_login import login_required
 from models import Institution
 from connection import DatabaseHandler
@@ -6,16 +6,16 @@ from . import institute
 
 session = DatabaseHandler.connect_to_database()
 
-# @login_required    #implement when login is completed
 @institute.route('/get', methods=['GET'])
+# @login_required
 def get_institutions():
     colleges = Institution.query.all()
     college_json_array = []
     for college in colleges:
         user_json = {
-            'collegename':college.name,
-            'college short':college.short,
-            'college id':college.id
+            'college_name':college.name,
+            'college_short':college.short,
+            'college_id':college.id
         }
         college_json_array.append(user_json)
     if not college_json_array:
@@ -29,22 +29,13 @@ def get_institutions():
         'array':college_json_array
     }, 200
 
-@institute.route('/add', methods=['GET', 'POST'])
+@institute.route('/add', methods=['POST'])
 @login_required
 def add_institution():
-    if request.method == 'POST':
-        info = Institution(name = request.data['college_name'], short = request.data['college_short'])
-        session.add(info)
-        session.commit()
-        return {
-            'status':'OK',
-            'message':'SUCCESS',
-        }, 200
-    else:
-        return {
-            'status':'OK',
-            'message':'RUNNING',
-        }, 200
+    info = Institution(name = request.data['college_name'], short = request.data['college_short'])
+    session.add(info)
+    session.commit()
+    return redirect('/dashboard')
 
 @institute.route('/get/<int:id>', methods=['GET'])
 def get_institution(id):

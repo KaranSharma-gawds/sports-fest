@@ -7,9 +7,10 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 DEBUG = True
 HOST = '0.0.0.0'
 PORT = 8080
+SECRET_KEY = 'suck my dick'
 
-PHOTOS_UPLOAD_FOLDER = 'photos'
-DOCUMENTS_UPLOAD_FOLDER = 'documents'
+PHOTOS_UPLOAD_FOLDER = 'static/photos'
+DOCUMENTS_UPLOAD_FOLDER = 'static/documents'
 ALLOWED_PHOTO_EXTENTIONS = set(['jpg', 'jpeg', 'png'])
 ALLOWED_DOCUMENT_EXTENTIONS = set(['pdf'])
 class ActivityType(Enum):

@@ -44,6 +44,11 @@ class User(DeclarativeBase, UserMixin):
         return self.username
     def check_password(self, password):
         return check_password_hash(self.pwhash, password)
+    def get_id(self):
+        try:
+            return self.username
+        except AttributeError:
+            raise NotImplementedError('No `id` attribute - override `get_id`')
 
 class Person(DeclarativeBase):
     __tablename__ = 'person'
@@ -69,11 +74,11 @@ class Person(DeclarativeBase):
 class Fest(DeclarativeBase):
     __tablename__ = 'fest'
     year = Column(Integer, primary_key=True)
-    host = Column(String, ForeignKey('institution.id'))
+    # host = Column(String, ForeignKey('institution.id'))
     no_of_days = Column(Integer)
-    def __init__(self, year=None, no_of_days=None, host=None):
+    def __init__(self, year=None, no_of_days=None):
         self.year = year
-        self.host = host
+        # self.host = host
         self.no_of_days = no_of_days
     def __repr__(self):
         return self.year
@@ -83,7 +88,8 @@ class Event(DeclarativeBase):
     id = Column(Integer, primary_key=True, autoincrement=True)
     fest = Column(Integer, ForeignKey('fest.year'))
     name = Column(String(200))
-    day = Column(Integer)
+    # day = Column(Integer)
+    day = Column(Date)
     start_time = Column(Time)
     end_time = Column(Time)
     venue = Column(String(200))
@@ -121,12 +127,14 @@ class UploadedFile(DeclarativeBase):
     __tablename__ = 'uploaded_file'
     file_id = Column(Integer, primary_key=True, autoincrement=True)
     file_name = Column(String)
-    event_id = Column(String(200), ForeignKey('event.id'))
-    def __init__(self, filename=None, event_id=None):
-        self.event_id = event_id
+    file_type = Column(String)
+    # event_id = Column(String(200), ForeignKey('event.id'))
+    def __init__(self, filename=None, file_type=None):
+        # self.event_id = event_id
+        self.file_type = file_type
         self.file_name = filename
     def __repr__(self):
-        return self.photo_id
+        return self.file_id
 
 #activity-type(Enum)
 class ActivityLog(DeclarativeBase):

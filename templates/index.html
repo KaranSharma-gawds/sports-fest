@@ -1,225 +1,352 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" href="../static/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap-grid.css">
     <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.css" > -->
     <link rel="stylesheet" type="text/css" href="../static/css/jquery.fullpage.min.css">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../static/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/animation.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/slick-theme.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.8.0/slick.css"/> -->
     <link rel="stylesheet" type="text/css" href="../static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="card.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/cardslider.css">
+
+
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/loader.css">
+
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/cardslider.css"> -->
 
     <!-- <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script> -->
 
     <title>Inter NIT Sports | NIT Kurukshetra</title>
-  </head>
-  <body>
+    <!-- <style>
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #222222;
+            z-index: 99999;
+            height: 100%;
+        }
+        
+        #status {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 64px;
+            height: 64px;
+            margin: -32px 0 0 -32px;
+            padding: 0;
+        }
+    </style> -->
+
+</head>
+
+
+<body>
+    <!-- <div id="preloader">
+        <div id="status">
+            <img height="64" src="../static/sports.png" width="64" />
+        </div>
+    </div> -->
+    <div class="loading-page">
+        <div class="container" style="margin-top:20vh">
+            <div class="row justify-content-center">
+                <div class="col-4 col-md-4 ">
+                    <div class="counter">
+                        <p>loading</p>
+                        <h1>0%
+                            <!--
+                                    h1.abs loading
+                                    h1.abs.color loading
+                                    -->
+                        </h1>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <!-- <svg id="ckLine" xmlns="http://www.w3.org/2000/svg"></svg> -->
-    
+
     <!-- navbar starts-->
-        <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-style">
-          <a class="navbar-brand" href="index.html"><img src="static/images/logo.png" style="width:150px;height:50px"></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-style">
+        <a class="navbar-brand" href="/"><img src="static/images/logo.png" style="width:150px;height:50px"></a>
+        <button class="navbar-toggler" type="button" style="background-color:white;" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul style="right:0px; position:absolute; color:#1d1d1d" class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link nav-text" href="notifications.html">NOTIFICATIONS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link nav-text" href="#page_three">EVENTS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link nav-text" href="gallery.html">GALLERY</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link nav-text" href="#page_five">CONTACT</a>
-              </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-text" href="/notifications">NOTIFICATIONS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-text" href="/#thirdPage">EVENTS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-text" href="/gallery">GALLERY</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-text" href="/organisers">TEAM</a>
+                </li>
             </ul>
-            
-          </div>
-        </nav>
-        
-        <!--navbar ends-->
-      <div id="fullpage">
-        <div class="section page_one "  >
-          <div class="container container_page_one" id="ckLine">
-            <div class="row">
-              <div class="col-6 col-lg-3 nit-div">
-                <span>NIT KURUKSHETRA</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 get-set-go">
-                <span >GET SET GO .</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6 inter_nit_page_one">
-                <p>All India Inter NIT Sports</p>
-              </div>
-              <div class="col-6 date_page_one" >
-                <p>2018</p>
-              </div>
-            </div>
-          </div>
-          <div class="container.fluid">
-            <div class="row">
 
-              <div class="col-12 col-md-4 events_page_one">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-2 col-md-2" style="text-align: center" >
-                      <i class="fa fa-arrow-circle-down" aria-hidden="true" style="color:white; font-size:8vh"></i>
+        </div>
+    </nav>
+
+    <!--navbar ends-->
+    <div id="fullpage">
+        <div class="section page_one ">
+            <div class="container container_page_one" id="ckLine">
+                <div class="row">
+                    <div class="col-6 col-lg-3 nit-div">
+                        <span>NIT KURUKSHETRA</span>
                     </div>
-                    <div class="col-10 col-md-10 " style="text-align:center;padding-top:15px">
-                      <span>facebook | twitter</span>
-                      <div style="border-style: solid; border-top:1px;border-left:none;border-right:none;border-bottom:none; border-height:0.5px;width:20px;border-color:white"></div>
+                </div>
+                <div class="row">
+                    <div class="col-12 get-set-go">
+                        <span><p>GET SET GO .</p></span>
                     </div>
-                  </div>
                 </div>
-                
-              </div>
-              
-
-            </div>
-          </div>  
-            
-          
-        </div>
-        <div class="section fp-auto-height-responsive page_two" id="section2" >
-          <div class="container.fluid">
-            <div class="row">
-
-              <div class="col-12 col-lg-5 about_image page_two_height">
-                
-              </div>
-              <div class="col-3 col-lg-1 about_title">
-                <div class="about_div">
-                  <span ">ABOUT</span>
-                </div>
-              </div>
-              <div class="col-12 col-lg-6 ">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-12 about_content">
-                      <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                <div class="row">
+                    <div class="col-6 inter_nit_page_one">
+                        <p>All India Inter NIT Sports</p>
                     </div>
-                  </div>
+                    <div class="col-6 date_page_one">
+                        <p>2018</p>
+                    </div>
                 </div>
-              </div>
-              
             </div>
-          </div>
-          
-        </div>
-        <div class="section page_three" id="page_three" >
-          <div class="container.fluid" style="height:100vh">
-            <div class="row">
-              <div class="col-3 col-md-1 schedule_title">
-                <div class="schedule_div">
-                  <span>EVENTS</span>
-                </div>
-              </div>
-              <div class="col-md-11">
-                <div class="container event_container">
-                  <div class="row" id="events">
-                      
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <div class="container.fluid">
+                <div class="row" style="width:100%">
+                    <div class="col-md-8">
 
 
-          
-        </div>
-        <div class="section fp-auto-height-responsive page_four" >
-          <div class="container.fluid" style="height:100vh">
-            <div class="row">
-              <div class="col-3 col-md-1 organisers_title">
-                <div class="organisers_div">
-                  <span>ORGANISERS</span>
-                </div>
-              </div>
-              <div class="col-md-11 margin-top">
-                <div class="container event_container">
-                  <div class="row" id="organisers">
-                      
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="section page_five" id="page_five">
-          <div class="container">
-            <div class="row">
-              <div class="col-6 col-md-3 get-in-touch-div">
-                <span>GET IN TOUCH</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 email-id">
-                <span>xyz@gmail.com</span>
-              </div>
-            </div>
-            <div class="row" style="font-family:'Roboto Condensed', sans-serif">
-              <div class="col-6">
-                <span>PHONE NUMBER 1</span>
-              </div>
-              <div class="col-6">
-                <span>PHONE NUMBER 1</span>
-              </div>
-              <div class="col-6 col-md-6">
-                <span>+91 8950123818</span>
-              </div>
-              <div class="col-6 col-md-6">
-                <span>+91 7023187028</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6 col-md-3 get-in-touch-div">
-                <span>ADDRESS</span>
-              </div>
-              <div class="col-12">
-                <span>NIT Kurukshetra,</span>
-                <span>Kurukshetra(Haryana)</span>
-                <span>136119<span>
-              </div>
 
+                    </div>
+                    <div class="col-12 col-md-7 events_page_one">
+                        <div class="container">
+                            <div class="row" style="width:100%">
+                                <div class="col-2 col-md-2" style="text-align: center" id="arrow-down">
+                                    <a href="#secondPage"><span></span></a>
+                                </div>
+                                <div class="col-10 col-md-10 gawds" style="text-align:center;padding-top:15px">
+                                    <div style="margin-bottom:5px; display:inline">Crafted with <i class="em em-heart"></i> by </div>
+                                    <a style="display:inline" class="gawds-link" href="http://gawds.in" title="Graphics and Web Development Squad, click to know more." target="_blank">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="15" width="80" version="1.1" viewBox="0 0 128 37.422">
+                                             <g transform="matrix(.37663 0 0 .37663 -96.819 -287.24)">
+                                                 <path class="gawds2" d="m280.56 784.37q4.86 0 9.09 1.89 4.32 1.8 7.47 5.04 3.24 3.15 5.04 7.47 1.89 4.32 1.89 9.18 0 3.6-1.08 6.93-0.99 3.33-2.88 6.12-1.8 2.79-4.41 4.95t-5.67 3.51q3.78 2.34 5.94 6.21 2.25 3.96 2.25 8.73 0 3.69-1.44 6.84-1.35 3.24-3.78 5.58-2.34 2.43-5.58 3.78-3.24 1.44-6.84 1.44v-4.68q2.7 0 5.04-1.08 2.34-0.99 4.05-2.79 1.8-1.71 2.79-4.05 1.08-2.34 1.08-5.04t-1.08-5.04q-0.99-2.34-2.79-4.14-1.71-1.71-4.05-2.79-2.34-0.99-5.04-0.99-4.86 0-9.18-1.8-4.23-1.89-7.47-5.04-3.15-3.24-5.04-7.47-1.8-4.32-1.8-9.18t1.8-9.18q1.89-4.32 5.04-7.47 3.24-3.24 7.47-5.04 4.32-1.89 9.18-1.89zm0 4.77q-3.87 0-7.29 1.53-3.42 1.44-6.03 3.96-2.52 2.52-4.05 6.03-1.44 3.42-1.44 7.29t1.44 7.29q1.53 3.42 4.05 6.03 2.61 2.52 6.03 4.05 3.42 1.44 7.29 1.44t7.29-1.44q3.51-1.53 6.03-4.05 2.52-2.61 3.96-6.03 1.53-3.42 1.53-7.29t-1.53-7.29q-1.44-3.51-3.96-6.03t-6.03-3.96q-3.42-1.53-7.29-1.53zm71.34-5.04q4.86 0 9.18 1.89 4.32 1.8 7.47 5.04 3.24 3.15 5.04 7.47 1.89 4.32 1.89 9.18v22.5h-4.77v-8.37q-3.15 4.32-8.1 6.84-4.86 2.52-10.71 2.52-4.86 0-9.18-1.8-4.23-1.89-7.47-5.04-3.15-3.24-5.04-7.47-1.8-4.32-1.8-9.18t1.8-9.18q1.89-4.32 5.04-7.47 3.24-3.24 7.47-5.04 4.32-1.89 9.18-1.89zm0 4.77q-3.87 0-7.29 1.53-3.42 1.44-6.03 3.96-2.52 2.52-4.05 6.03-1.44 3.42-1.44 7.29t1.44 7.29q1.53 3.42 4.05 6.03 2.61 2.52 6.03 4.05 3.42 1.44 7.29 1.44t7.29-1.44q3.51-1.53 6.03-4.05 2.52-2.61 3.96-6.03 1.53-3.42 1.53-7.29t-1.53-7.29q-1.44-3.51-3.96-6.03t-6.03-3.96q-3.42-1.53-7.29-1.53zm69.15 42.39q-3.69 0-6.93-1.35-3.15-1.44-5.58-3.78-2.34-2.43-3.78-5.58-1.35-3.24-1.35-6.93v-28.35h4.77v28.35q0 2.7 0.99 5.13 0.99 2.34 2.7 4.14 1.8 1.71 4.14 2.7t5.04 0.99 5.04-0.99 4.05-2.7q1.8-1.8 2.79-4.14 1.08-2.43 1.08-5.13v-28.35h4.68v28.35q0 2.7 0.99 5.13 1.08 2.34 2.79 4.14 1.8 1.71 4.14 2.7t5.04 0.99 5.04-0.99 4.05-2.7q1.8-1.8 2.79-4.14 1.08-2.43 1.08-5.13v-28.35h4.68v28.35q0 3.69-1.44 6.93-1.35 3.15-3.78 5.58-2.34 2.34-5.58 3.78-3.24 1.35-6.84 1.35-4.86 0-8.91-2.34-4.05-2.43-6.39-6.48-2.34 4.05-6.39 6.48-3.96 2.34-8.91 2.34zm96.95-47.16q5.85 0 10.71 2.61 4.86 2.52 8.1 6.84v-30.87h4.68v45q0 4.86-1.89 9.18-1.8 4.23-5.04 7.47-3.15 3.15-7.47 5.04-4.23 1.8-9.09 1.8t-9.18-1.8q-4.23-1.89-7.47-5.04-3.15-3.24-5.04-7.47-1.8-4.32-1.8-9.18t1.8-9.18q1.89-4.32 5.04-7.47 3.24-3.24 7.47-5.04 4.32-1.89 9.18-1.89zm0 4.77q-3.87 0-7.29 1.53-3.42 1.44-6.03 3.96-2.52 2.52-4.05 6.03-1.44 3.42-1.44 7.29t1.44 7.29q1.53 3.42 4.05 6.03 2.61 2.52 6.03 4.05 3.42 1.44 7.29 1.44t7.29-1.44q3.42-1.53 5.94-4.05 2.61-2.61 4.05-6.03 1.53-3.42 1.53-7.29t-1.53-7.29q-1.44-3.51-4.05-6.03-2.52-2.52-5.94-3.96-3.42-1.53-7.29-1.53zm60.48 20.7q-2.34 0-4.5-0.81-2.07-0.9-3.69-2.34-1.53-1.53-2.52-3.51-0.9-2.07-0.99-4.41-0.18-1.26 0-2.7 0.09-2.34 0.99-4.32 0.99-2.07 2.52-3.51 1.62-1.53 3.69-2.34 2.16-0.9 4.5-0.9h16.92v4.68h-16.92q-2.79 0-4.86 1.89-1.98 1.89-2.16 4.68-0.18 1.17 0 2.34 0.18 2.79 2.16 4.68 2.07 1.89 4.86 1.89h6.66 0.09q2.34 0 4.41 0.9 2.16 0.81 3.69 2.34 1.62 1.53 2.52 3.6 0.99 1.98 1.08 4.32v2.43 0.09 0.18q0 2.43-0.99 4.5-0.9 2.07-2.52 3.69-1.62 1.53-3.78 2.43-2.07 0.9-4.5 0.9h-17.37v-4.68h17.37q2.61 0 4.59-1.62 1.98-1.71 2.43-4.32 0-0.27 0-0.54 0.09-0.36 0.09-0.63v-1.89q-0.09-2.88-2.16-4.95t-4.95-2.07h-6.66z "style="fill:white"></path>
+                                             </g>
+                                         </svg>
+                                    </a>
+
+
+                                    <!-- <span>Crafted with love by GAWDS | Developers</span> -->
+                                    <div style="border-style: solid; border-top:1px;border-left:none;border-right:none;border-bottom:none; border-height:0.5px;width:20px;border-color:white"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
             </div>
-          </div>
+
 
         </div>
-      </div>
-    
+        <div class="section fp-auto-height-responsive page_two" id="section2">
+            <div class="container.fluid">
+                <div class="row" style="width:100%">
+
+                    <div class="col-12 col-lg-5 about_image page_two_height">
+
+                    </div>
+                    <div class="col-3 col-lg-1 about_title">
+                        <div class="about_div">
+                            <span><p>ABOUT</p></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 ">
+                        <div class="slide-one">
+                            <div class="container ">
+                                <div class="row" style="width:100%">
+                                    <div class="col-12 about_content ">
+                                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                                            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                            mollit anim id est laborum. "</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="section page-three" id="page_three">
+            <div class="container.fluid " style=" ">
+                <div class="row" style="width:100%">
+                    <div class="col-3 col-md-1 schedule_title ">
+                        <div class="schedule_div ">
+                            <span><p>EVENTS</p></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-11 ">
+                        <div class="container">
+                            <div class="row padding-top-2" id="evento">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section page_four" style="background-color:#1d1d1d">
+            <div class="container.fluid " style=" ">
+                <div class="row" style="width:100%">
+                    <div class="col-3 col-md-1 organisers_title ">
+                        <div class="organisers_div">
+                            <span><p>PARTICIPANTS</p></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-11 ">
+                        <div class="container">
+                            <div class="row padding-top-2" id="participants">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section page_five " id="page_five ">
+            <div class="container ">
+                <div class="row" style="width:100%">
+                    <div class="col-6 col-md-3 get-in-touch-div ">
+                        <span>GET IN TOUCH</span>
+                    </div>
+                </div>
+                <div class="row" style="width:100%">
+                    <div class="col-12 email-id ">
+                        <span><p>xyz@gmail.com</p></span>
+                    </div>
+                </div>
+                <div class="row" style="font-family: 'Roboto Condensed', sans-serif ">
+                    <div class="col-6 ">
+                        <span><p>PHONE NUMBER 1</p></span>
+                    </div>
+                    <div class="col-6 ">
+                        <span><p>PHONE NUMBER 1</p></span>
+                    </div>
+                    <div class="col-6 col-md-6 ">
+                        <span><p>+91 8950123818</p></span>
+                    </div>
+                    <div class="col-6 col-md-6 ">
+                        <span><p>+91 7023187028</p></span>
+                    </div>
+                </div>
+                <div class="row" style="width:100%">
+                    <div class="col-6 col-md-3 get-in-touch-div ">
+                        <span>ADDRESS</span>
+                    </div>
+                    <div class="col-12 ">
+                        <span><p>NIT Kurukshetra,</p></span>
+                        <span><p>Kurukshetra(Haryana)</p></span>
+                        <span><p>136119</p></span>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div style="position:absolute; font-size:15px; color:#1d1d1d;bottom:0px;right:10px; text-align:center; font-family:'Open Sans Condensed', sans-serif;">
+                <a type="button" data-toggle="modal" data-target="#devs"><i class="em em-heart"></i>Loved It? meet Developers</a>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="devs" tabindex="-1" role="dialog" aria-labelledby="devs" aria-hidden="true">
+        <div class="modal-dialog modalw" role="document">
+            <button type="button" class="close closedev" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+
+            <div class="container" style="margin-top:20vh">
+                <div class="row">
+                    <div class="col-12 col-md-2">
+
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card" style="margin-bottom:20px">
+                            <img class="card-img-top" src="../static/images/PARIS.jpg" alt="Card image cap">
+                            <div class="card-block" style="text-align:center; color:#1d1d1d; font-family:'Roboto Condensed', sans-serif;">
+
+                                <h4 class="card-title">Karan Sharma</h4>
+                                <p>Back End Developer</p>
+                                <i class="fa fa-github" href="https://github.com/avinashbharti97" style="display:inline; margin:5px; font-size:15px"></i>
+                                <i class="fa fa-linkedin" href="https://github.com/avinashbharti97" style="display:inline; margin:5px; font-size:15px"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card" style="">
+                            <img class="card-img-top" src="../static/images/PARIS.jpg" alt="Card image cap">
+                            <div class="card-block" style="text-align:center; color:#1d1d1d; font-family:'Roboto Condensed', sans-serif;">
+                                <h4 class="card-title">Avinash Bharti</h4>
+                                <p>Front End Developer</p>
+                                <i class="fa fa-github" href="https://github.com/avinashbharti97" style="display:inline; margin:5px; font-size:15px"></i>
+                                <i class="fa fa-linkedin" href="https://github.com/avinashbharti97" style="display:inline; margin:5px; font-size:15px"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
 
     <!-- Optional JavaScript -->
-    <script src="../static/js/jquery-3.2.1.min.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.js"></script> -->
-    <script type="text/javascript" src="../static/js/scrolloverflow.min.js"></script>
-    <script type="text/javascript" src="../static/js/jquery.fullpage.min.js"></script>
-    <script type="text/javascript" src="../static/js/script.js"></script>
-    <script type="text/javascript" src="../static/js/jquery.cardslider.min.js"></script>
-    <!-- <script src="ckLine-master/jquery.ckLine.min.js"></script> -->
+    <script src="../static/js/jquery-3.2.1.min.js "></script>
+    <script src="../static/js/bootstrap.bundle.min.js "></script>
 
-    
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js " integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=" anonymous "></script> -->
+    <!-- <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.js "></script> -->
+    <script type="text/javascript " src="../static/js/scrolloverflow.min.js "></script>
+    <script type="text/javascript " src="../static/js/jquery.fullpage.min.js "></script>
+    <!-- <script type="text/javascript " src="https://cdn.jsdelivr.net/jquery.slick/1.8.0/slick.min.js "></script> -->
+    <script type="text/javascript " src="../static/js/slick.min.js "></script>
+    <script type="text/javascript " src="../static/js/loader.js "></script>
+    <script type="text/javascript " src="../static/js/script2.js "></script>
+    <script type="text/javascript " src="../static/js/script.js "></script>
 
-    
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script> -->
-    <script src="../static/js/bootstrap.js"></script>
-  </body>
+
+</body>
+
 </html>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.css" > -->
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/jquery.fullpage.min.css"> -->
+    <link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="card.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/cardslider.css"> -->
+
+    <!-- <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script> -->
+
+    <title>Inter NIT Sports | NIT Kurukshetra</title>
+</head>
+
+<body>
+
+    <div class="modal fade" id="create_event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div class="container.fluid" style="padding-top:40px; padding-bottom:40px">
+                    <form class="form-horizontal" action="/api/event/2016/add" method="POST">
+                        <div class="form-group">
+                            <label class="control-label col-5" for="name">EVENT NAME:</label>
+                            <div class="col-9">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Event Name">
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
+                        <label class="control-label col-5" for="">YEAR</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control" id="year" placeholder="Enter Year">
+                        </div>
+                    </div> -->
+                        <div class="form-group">
+                            <label class="control-label col-5" for="">DAY</label>
+                            <div class="col-9">
+                                <input type="date" id="datetimepicker4" name="day" class="form-control" placeholder="Enter Day">
+                            </div>
+                        </div>
+                        <!-- <div class='input-group date' id='datetimepicker4'>
+                            <input type='text' name="day" class="form-control" />
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                            </span>
+                        </div> -->
+                        <div class="form-group">
+                            <label class="control-label col-5" for="">START TIME</label>
+                            <div class="col-9">
+                                <input type="time" name="start_time" class="form-control" id="start_time" placeholder="Enter Start Time">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-5" for="">END TIME</label>
+                            <div class="col-9">
+                                <input type="time" name="end_time" class="form-control" id="end_time" placeholder="Enter End Time">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-5" for="">VENUE</label>
+                            <div class="col-9">
+                                <input type="text" name="venue" class="form-control" id="venue" placeholder="Enter VENUE">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" type="submit" style="margin-top:20px" value="submit" name="submit">
+                        SUBMIT</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="create_org" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal titles</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="create_noti" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal titled</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container" style="margin-top:10vh; text-align: center">
+        <div class="row">
+            <a href="/api/user/logout" method="POST" class="col-6 col-md-2 offset-md-10" style="padding: 10px; background: linear-gradient(to right, #FF5F6D, #FFC371); color:white">
+                <span>LOGOUT</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 10vh">
+        <div class="row">
+            <!-- <div class="col-12 col-md-4">
+                <button type="button" data-toggle="modal" data-target="#create_event" class="card" style="padding-top:50px;padding-bottom: 50px; background: linear-gradient(to right, #FF5F6D , #FFC371);color:white; font-family:'Roboto Condensed'; font-size:30px">
+                        <div class="container" style="text-align:center">
+                            <div class="row">
+                                <div class="col-12">
+                                <span>  CREATE EVENT</span>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+            </div> -->
+            <div class="col-6 col-md-3" style="margin-bottom:15px">
+                <a class="btn btn-primary" data-toggle="modal" data-target="#create_event">CREATE EVENTS</a>
+            </div>
+            <div class="col-6 col-md-3" style="margin-bottom:15px">
+                <a class="btn btn-primary" href="/person/add">CREATE ORGANISERS</a>
+            </div>
+            <div class="col-6 col-md-3" style="margin-bottom:15px">
+                <a class="btn btn-primary" href="/result/add">UPDATE RESULT</a>
+            </div>
+            <div class="col-6 col-md-3" style="margin-bottom:15px">
+                <a class="btn btn-primary" href="/upload/doc">CREATE NOTIFICATION</a>
+            </div>
+            <div class="col-6 col-md-3" style="margin-bottom:15px">
+                <a class="btn btn-primary" href="/institute/add">CREATE COLLEGE</a>
+            </div>
+            <div class="col-6 col-md-3" style="margin-bottom:15px">
+                <a class="btn btn-primary" href="/upload/image">upload image</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4">
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../static/js/logout.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/jquery.fullpage.js"></script> -->
+    <!-- <script type="text/javascript" src="../static/js/scrolloverflow.min.js"></script> -->
+    <!-- <script type="text/javascript" src="../static/js/jquery.fullpage.min.js"></script> -->
+    <!-- <script type="text/javascript" src="../static/js/script.js"></script> -->
+    <!-- <script type="text/javascript" src="../static/js/jquery.cardslider.min.js"></script> -->
+    <!-- <script src="ckLine-master/jquery.ckLine.min.js"></script> -->
+
+
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script> -->
+    <script src="../static/js/bootstrap.js"></script>
+    <script>
+        $(function() {
+            // Bootstrap DateTimePicker v4
+            $('#datetimepicker4').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+        });
+    </script>
+</body>
+
+</html>

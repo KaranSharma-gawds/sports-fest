@@ -27,18 +27,21 @@
         //     document.body.appendChild(x);
         // }
 
-        const url = 'https://localhost:8080/load-image/7';
+        // const url = 'https://localhost:8080/api/upload/image/get/1';
 
         function createNode(element) {
+            console.log('create_node function');
             return document.createElement(element);
         }
 
         function append(parent, child) {
+            console.log('append function');
             return parent.appendChild(child);
         }
 
         fetch(url).then((response) => response.json()).then(function(data) {
-            var urls = data.urls;
+
+            var urls = data.array;
             var url;
             for (url in urls) {
                 var img = createNode('img');

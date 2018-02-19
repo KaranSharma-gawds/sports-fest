@@ -34,40 +34,34 @@ def get_people():
         'array':people_json_array
     }, 200
 
-@people.route('/add', methods=['GET','POST'])
-# @login_required
+@people.route('/add', methods=['POST'])
+@login_required
 def add_person():
-    if request.method == 'POST':
-        if 'photo' not in request.files:
-            # flash('no photo part in request')
-            print('no photo part in request')
-            return redirect(request.url)
-        photo = request.files['photo']
-        name = request.data['name']
-        role = request.data['role']
-        email_id = request.data['email_id']
-        contact_no = request.data['contact_no']
-        institution = request.data['institution']
-        designation = request.data['designation']
-        obj = upload_file(photo, 'IMG')
-        if obj['status'] == 'BAD REQUEST':
-            print(obj['message'])
-            return obj
-        if obj['status'] == 'OK':
-            print(obj['message'])
-            filename = obj['filename']
-            # upload_time = obj['upload_time']
-            info = Person(name=name, institution=institution, designation=designation, role=role, \
-                            email_id=email_id, contact_no=contact_no, image_url=filename)
-            session.add(info)
-            session.commit()
-            return {
-                'status':'OK',
-                'message':'SUCCESSFULLY ADDED PERSON'
-            }
-        return {
-            'status':'ERROR',
-            'message':'UNPREDICTED ERROR OCCURRED'
-        }
-    else:
-        return render_template('add_person.html', filetype='photo', url=request.url)
+    if 'photo' not in request.files:
+        # flash('no photo part in request')
+        print('no photo part in request')
+        return redirect(request.url)
+    photo = request.files['photo']
+    name = request.data['name']
+    role = request.data['role']
+    email_id = request.data['email_id']
+    contact_no = request.data['contact_no']
+    institution = request.data['institution']
+    designation = request.data['designation']
+    obj = upload_file(photo, 'IMG')
+    if obj['status'] == 'BAD REQUEST':
+        print(obj['message'])
+        return obj
+    if obj['status'] == 'OK':
+        print(obj['message'])
+        filename = obj['filename']
+        # upload_time = obj['upload_time']
+        info = Person(name=name, institution=institution, designation=designation, role=role, \
+                        email_id=email_id, contact_no=contact_no, image_url=filename)
+        session.add(info)
+        session.commit()
+        return redirect('/dashboard')
+    return {
+        'status':'ERROR',
+        'message':'UNPREDICTED ERROR OCCURRED'
+    }
