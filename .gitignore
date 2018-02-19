@@ -1,9 +1,10 @@
 __pycache__/
-photos/
+
 sports.db
 my_routes/__pycache__
 .vscode/
-documents/
 flask-restful/
 .ropeproject/
 config.pyc
+*.pyc
+.idea

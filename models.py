@@ -88,18 +88,26 @@ class Event(DeclarativeBase):
     id = Column(Integer, primary_key=True, autoincrement=True)
     fest = Column(Integer, ForeignKey('fest.year'))
     name = Column(String(200))
-    # day = Column(Integer)
-    day = Column(Date)
-    start_time = Column(Time)
-    end_time = Column(Time)
-    venue = Column(String(200))
-    def __init__(self, fest=None, name=None, day=None, start_time=None, end_time=None, venue=None):
+    venue = Column(String)
+    def __init__(self, fest=None, name=None, venue=None):
         self.fest = fest
         self.name = name
-        self.day = day
-        self.start_time = start_time
-        self.end_time = end_time
         self.venue = venue
+    def __repr__(self):
+        return self.id
+
+class Day(DeclarativeBase):
+    __tablename__ = 'days'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String)
+    result_pdf = Column(String)
+    schedule_pdf = Column(String)
+    event_id = Column(Integer, ForeignKey('event.id'))
+    def __init__(self, name=None, event_id=None, result_pdf=None, schedule_pdf=None):
+        self.name = name
+        self.result_pdf = result_pdf
+        self.schedule_pdf = schedule_pdf
+        self.event_id = event_id
     def __repr__(self):
         return self.id
 

@@ -1,16 +1,17 @@
-from flask import request, redirect, render_template
+from flask import request, redirect, render_template, flash
 from flask_login import login_required
 from models import Person
 from connection import DatabaseHandler
 import os, config as config
 from .upload_file import upload_file
 from . import people
-
+import config as config
 session = DatabaseHandler.connect_to_database()
 
 @people.route('/get', methods=['GET'])
 def get_people():
-    all_people = Person.query.all()
+    all_people = session.query(Person).all()
+    session.close()
     people_json_array = []
     for person in all_people:
         people_json_array.append({
@@ -35,9 +36,10 @@ def get_people():
     }, 200
 
 @people.route('/add', methods=['POST'])
-@login_required
+# @login_required
 def add_person():
     if 'photo' not in request.files:
+        session.close()
         # flash('no photo part in request')
         print('no photo part in request')
         return redirect(request.url)
@@ -51,6 +53,7 @@ def add_person():
     obj = upload_file(photo, 'IMG')
     if obj['status'] == 'BAD REQUEST':
         print(obj['message'])
+        session.close()
         return obj
     if obj['status'] == 'OK':
         print(obj['message'])
@@ -59,9 +62,17 @@ def add_person():
         info = Person(name=name, institution=institution, designation=designation, role=role, \
                         email_id=email_id, contact_no=contact_no, image_url=filename)
         session.add(info)
-        session.commit()
+        try:
+            session.commit()
+        except:
+            session.rollback()
+            flash(config.UNEXPECTED_ERROR)
+            return redirect('/dashboard')
+        finally:
+            session.close()
+        flash('success')
         return redirect('/dashboard')
     return {
         'status':'ERROR',
         'message':'UNPREDICTED ERROR OCCURRED'
-    }
+    }, 500

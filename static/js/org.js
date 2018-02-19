@@ -9,7 +9,7 @@ $(document).ready(function() {
     $.ajax({
         dataType: "json",
         // url: "https://5a5b96f44611170012fe752c.mockapi.io/api/profile",
-        url: "http://localhost:8080/api/people/get",
+        url: "/api/people/get",
         method: "GET",
         success: function(data) {
             var templateData = [];

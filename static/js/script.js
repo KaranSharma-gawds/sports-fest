@@ -18,7 +18,7 @@ $(document).ready(function() {
     $.ajax({
         dataType: "json",
         // url: "https://5a5b96f44611170012fe752c.mockapi.io/api/event",
-        url: "http://localhost:8080/api/event/2016/get",
+        url: "/api/event/2016/get",
 
         method: "GET",
         success: function(data) {
@@ -45,46 +45,4 @@ $(document).ready(function() {
         window.location = $(this).find("a").attr("href");
         return false;
     });
-
-
-    $('.responsive').slick({
-        arrows: true,
-        dots: true,
-        infinite: false,
-        speed: 300,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        responsive: [{
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
-                }
-
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-            // You can unslick at a given breakpoint now by adding:
-            // settings: "unslick"
-            // instead of a settings object
-        ]
-    });
-    $('.slick-frame').on('init', function() {
-        $slickFrame.css({ visibility: 'visible' });
-    });
-    $('.slick-frame').slick()
 });

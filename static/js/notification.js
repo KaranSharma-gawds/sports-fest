@@ -1,7 +1,7 @@
 $.ajax({
     dataType: "json",
     // url: "http://5a5b96f44611170012fe752c.mockapi.io/api/notification",
-    url: "http://localhost:8080/api/upload/doc/get",
+    url: "/api/upload/doc/get",
     method: "GET",
     success: function(data) {
         console.log(data);

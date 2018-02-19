@@ -29,63 +29,22 @@
 
 <body>
     <div class="container" style="margin:40px">
-        <form action={{url}} method="POST">
+        <form method="POST" id="form1">
             <div class="form-group row">
                 <label for="event" class="col-2 col-form-label">select event</label>
                 <div class="col-10">
                     <select class="form-control" name="event" id="event-dropdown">
-                      
-                      
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="first_name" class="col-2 col-form-label">Name Of 1st position</label>
-                <div class="col-10">
-                    <input class="form-control" type="text" value="" name="first_name" id="first_name">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="first_institution" class="col-2 col-form-label">Institute Of 1st Position</label>
-                <div class="col-10">
-                    <select class="form-control" name="first_institution" id="inst1">
-                      
-                      
+                              
+                              
                             </select>
                 </div>
-
             </div>
             <div class="form-group row">
-                <label for="second_name" class="col-2 col-form-label">Name Of 2nd position</label>
+                <label for="name" class="col-2 col-form-label">Name Of 1st Day eg. Day1</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="" name="second_name" id="second_name">
+                    <input class="form-control" type="text" value="" name="name" id="name">
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="second_institution" class="col-2 col-form-label">Institute Of 2nd Position</label>
-                <div class="col-10">
-                    <select class="form-control institution" name="second_institution" id="inst2">
-                      
-                      
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="third_name" class="col-2 col-form-label">Name Of 3rd position</label>
-                <div class="col-10">
-                    <input class="form-control" type="text" value="" name="third_name" id="third_name">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="third_institution" class="col-2 col-form-label">Institute Of 3rd Position</label>
-                <div class="col-10">
-                    <select class="form-control institution" name="third_institution" id="inst3">
-                      
-                      
-                    </select>
-                </div>
-            </div>
-
             <button type="submit" name="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
@@ -135,39 +94,11 @@
             }
         });
 
-        function Item(id, name) {
-            // var obj = '<div class="col-12 col-md-4"><div class="event-card-2" onclick=location.href="' + link + '"><span><p>' + name + '</p></span></div></div>';
-            var obj = '<option value="' + id + '">' + name + '</option>'
-            obj = $.parseHTML(obj);
-            return obj[0];
-        }
-        $.ajax({
-            dataType: "json",
-            // url: "https://5a5b96f44611170012fe752c.mockapi.io/api/event",
-            url: "/api/institute/get",
-
-            method: "GET",
-            success: function(data) {
-                console.log("printing data:", data.array[0].college_id);
-
-                var templateData = [];
-                $.each(data.array, function(k, v) {
-                    var obj = {};
-                    //storing link for a spcific event in link variable
-                    obj.id = v.college_id;
-                    obj.name = v.college_name;
-                    // console.log(v.name); // console.log("k.start_name");
-                    templateData.push(obj);
-
-                });
-                templateData.forEach(function(k) {
-                    console.log(k);
-                    $('#inst1').append(Item(k.id, k.name));
-                    $('#inst2').append(Item(k.id, k.name));
-                    $('#inst3').append(Item(k.id, k.name));
-                });
-
-            }
+        $("#form1").submit(function(e) {
+            //console.log(e);
+            var event_id = $("#event-dropdown").val();
+            console.log($("#event-dropdown").val());
+            $(this).attr("action", "/api/day/" + event_id + "/add");
         });
     </script>
 </body>

@@ -1,16 +1,16 @@
 import datetime as datetime
-from flask import request, redirect
+from flask import request, redirect, flash
 from flask_login import login_required
 from models import Event, Fest, Result, Institution
 from connection import DatabaseHandler
 from . import event_result
-
+import config as config
 session = DatabaseHandler.connect_to_database()
 
 @event_result.route('/get/<int:event_id>', methods=['GET'])
 def get_result(event_id):
     # event = request.data['event']
-    result = Result.query.filter_by(event_id=event_id).first()
+    result = session.query(Result).filter_by(event_id=event_id).first()
     if not result:
         print('------------------no result uploaded yet---------------')
         return {
@@ -18,10 +18,10 @@ def get_result(event_id):
             'message':'SUCCESS',
             'result':None
         }
-    first_institution_name = Institution.query.filter_by(id=result.first_institution).first().name
-    second_institution_name = Institution.query.filter_by(id=result.second_institution).first().name
-    third_institution_name = Institution.query.filter_by(id=result.third_institution).first().name
-    
+    first_institution_name = session.query(Institution).filter_by(id=result.first_institution).first().name
+    second_institution_name = session.query(Institution).filter_by(id=result.second_institution).first().name
+    third_institution_name = session.query(Institution).filter_by(id=result.third_institution).first().name
+    session.close()
     result_json = {
         'event_id':result.event_id,
         'first_name':result.first_name,
@@ -48,7 +48,8 @@ def add_result():
     third_name = request.data['third_name']
     third_institution = request.data['third_institution']
     print('event:'+event+'firstname:'+first_name+'first_institution:'+first_institution+'-----------------------------------------------')
-    if not Event.query.filter_by(id=event).first():
+    if not session.query(Event).filter_by(id=event).first():
+        session.close()
         return {
             'status':'BAD REQUEST',
             'message':'EVENT DOES NOT EXIST'
@@ -57,7 +58,13 @@ def add_result():
                     second_name=second_name, second_institution=second_institution, third_name=third_name, \
                     third_institution=third_institution)
     session.add(info)
-    session.commit()
+    try:
+        session.commit()
+    except:
+        session.rollback()
+        flash(config.UNEXPECTED_ERROR)
+    finally:
+        session.close()
     return redirect('/dashboard')
     # return {
     #     'status':'OK',

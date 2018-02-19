@@ -19,4 +19,4 @@ class DatabaseHandler:
 		engine.raw_connection().connection.text_factory = lambda x: x.encode('utf-8', 'ignore')
 		session = scoped_session(sessionmaker(bind=engine))
 		DeclarativeBase.query = session.query_property()
-		return session()
+		return session

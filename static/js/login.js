@@ -7,7 +7,7 @@ $(document).ready(function() {
         var data = $form.serialize();
         console.log(data);
         $.ajax({
-            url: "http://localhost:8080/api/user/login",
+            url: "/api/user/login",
             method: "POST",
             data: data,
             success: function(data) {
